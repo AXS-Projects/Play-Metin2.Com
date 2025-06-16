@@ -91,6 +91,7 @@ return [
     'page_register_username' => 'Nume utilizator',
     'page_register_real_name' => 'Numele real',
     'page_register_age' => 'Vârsta',
+    'page_register_invite_code' => 'Cod de invitație (opțional)',
     'page_register_email' => 'Email',
     'page_register_repeat_email' => 'Repetă Email',
     'page_register_password' => 'Parolă',
