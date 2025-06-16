@@ -107,8 +107,6 @@ return [
             <li>Datele tale vor fi protejate conform politicii de confidențialitate.</li>
         </ul>
         <p>Te rugăm să derulezi până jos pentru a putea accepta termenii și a finaliza înregistrarea.</p>',
-    'register_success' => 'Înregistrare reușită! Contul tău a fost creat.',
-    'register_error' => 'Eroare la înregistrare! Verifică informațiile introduse.',
 
 	// PAGINA REGISTRARE - EMAIL ACTIVATED.
     'register_success' => 'Contul tău a fost creat cu succes. Te rugăm să verifici emailul pentru a-l activa.',
@@ -126,8 +124,8 @@ return [
     'page_download_button' => 'Descarcă',
     'page_download_no_links' => 'Momentan nu sunt disponibile link-uri de descărcare.',
     'page_download_requirements' => 'Cerințe de sistem',
-	'page_download_unavailable' => 'Descărcarea este temporar indisponibilă.',
-	'page_download_no_description' => 'Informațiile despre descărcare nu sunt disponibile momentan.',
+'page_download_unavailable' => 'Descărcarea este temporar indisponibilă.',
+'page_download_no_description' => 'Informațiile despre descărcare nu sunt disponibile momentan.',
 
     // PAGE RESET PASSWORD
     'page_change_password_title' => 'Schimbă Parola',

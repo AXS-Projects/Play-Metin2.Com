@@ -107,8 +107,6 @@ return [
             <li>Your data will be protected in accordance with our privacy policy.</li>
         </ul>
         <p>Please scroll down to accept the terms and complete your registration.</p>',
-    'register_success' => 'Registration successful! Your account has been created.',
-    'register_error' => 'Registration failed! Please check your inputs.',
 
 	// PAGINA REGISTRARE - EMAIL ACTIVATED.
     'register_success' => 'Your account has been successfully created. Please check your email to activate your account.',
@@ -126,8 +124,8 @@ return [
     'page_download_button' => 'Download',
     'page_download_no_links' => 'No download links available at the moment.',
     'page_download_requirements' => 'System Requirements',
-	'page_download_unavailable' => 'The download is temporarily unavailable.',
-	'page_download_no_description' => 'Download information is currently unavailable.',
+'page_download_unavailable' => 'The download is temporarily unavailable.',
+'page_download_no_description' => 'Download information is currently unavailable.',
 
     // PAGE RESET PASSWORD
     'page_change_password_title' => 'Change Password',
