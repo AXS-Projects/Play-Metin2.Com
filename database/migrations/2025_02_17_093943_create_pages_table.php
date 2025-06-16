@@ -11,12 +11,13 @@ return new class extends Migration
      */
 	public function up()
 	{
-		Schema::create('pages', function (Blueprint $table) {
-			$table->id();
-			$table->string('title')->unique();
-			$table->text('content');
-			$table->timestamps();
-		});
+                Schema::create('pages', function (Blueprint $table) {
+                        $table->id();
+                        $table->string('title');
+                        $table->string('slug')->unique();
+                        $table->text('content');
+                        $table->timestamps();
+                });
 	}
 
     /**
