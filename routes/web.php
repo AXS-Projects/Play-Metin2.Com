@@ -16,6 +16,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ItemShopController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GalleryController;
 
 // Aplica middleware-ul global pentru toate rutele
 Route::middleware([LanguageMiddleware::class])->group(function () {
@@ -39,6 +40,13 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         Route::post('/news/{slug}/comment', [NewsController::class, 'comment'])->name('news.comment');
         Route::post('/comments/{comment}/like', [NewsController::class, 'like'])->name('comments.like');
         Route::post('/comments/{comment}/dislike', [NewsController::class, 'dislike'])->name('comments.dislike');
+
+        // Gallery routes
+        Route::get('/screenshots', [GalleryController::class, 'index'])->name('gallery.index');
+        Route::get('/gallery/{item}', [GalleryController::class, 'show'])->name('gallery.show');
+        Route::post('/gallery/{item}/comment', [GalleryController::class, 'comment'])->name('gallery.comment');
+        Route::post('/gallery/comments/{comment}/like', [GalleryController::class, 'like'])->name('gallery.comments.like');
+        Route::post('/gallery/comments/{comment}/dislike', [GalleryController::class, 'dislike'])->name('gallery.comments.dislike');
 	
 	Route::post('/metin2/login', [Metin2AuthController::class, 'login'])->name('metin2.login');
 	Route::post('/metin2/logout', [Metin2AuthController::class, 'logout'])->name('metin2.logout');
