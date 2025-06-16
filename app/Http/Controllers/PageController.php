@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function show($slug)
     {
-        $page = Page::where('title', $slug)->firstOrFail();
+        $page = Page::where('slug', $slug)->firstOrFail();
         return view('pages.show', compact('page'));
     }
 }
