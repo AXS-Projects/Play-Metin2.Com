@@ -117,14 +117,18 @@
     <h2 class="text-xl font-semibold mb-4 text-green-400 text-center">{{ __('Game Screenshots') }}</h2>
     
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        @for ($i = 1; $i <= 4; $i++)
-            <div class="relative overflow-hidden rounded-lg border border-gray-700 aspect-video bg-gray-800 hover:border-green-500 transition-all duration-300 transform hover:scale-105 group">
-                <img src="/images/w.png" alt="Game Screenshot {{ $i }}" class="w-full h-full object-cover">
+        @foreach ($latestMedia as $media)
+            <a href="{{ route('gallery.show', $media) }}" class="relative overflow-hidden rounded-lg border border-gray-700 aspect-video bg-gray-800 hover:border-green-500 transition-all duration-300 transform hover:scale-105 group">
+                @if ($media->image_path)
+                    <img src="{{ asset('storage/' . $media->image_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover" />
+                @else
+                    <iframe src="https://www.youtube.com/embed/{{ \Illuminate\Support\Str::afterLast($media->video_url, '=') }}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                @endif
                 <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span class="text-green-400 text-2xl">🔍</span>
                 </div>
-            </div>
-        @endfor
+            </a>
+        @endforeach
     </div>
     
     <div class="text-center mt-4">
