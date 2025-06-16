@@ -10,14 +10,16 @@ use App\Models\Account;
 use App\Mail\AccountActivationMail;
 use Illuminate\Support\Str;
 use Anhskohbo\NoCaptcha\NoCaptcha;
+use App\Models\Setting;
 
 class RegisterController extends Controller
 {
     public function showRegisterForm()
     {
-		return view('register', [
-			'title' => ' - Register', // Titlul pentru pagina de înregistrare
-		]);
+        return view('register', [
+            'title' => ' - Register', // Titlul pentru pagina de înregistrare
+            'refferEnabled' => Setting::isEnabled('reffer_enabled', false),
+        ]);
     }
 
     public function register(Request $request)
@@ -29,7 +31,7 @@ class RegisterController extends Controller
             'username' => 'required|string|max:30|unique:account.account,login',
             'real_name' => 'required|string|max:255',
             'age' => 'required|integer|min:13',
-            'reffer' => 'nullable|string|max:255',
+            'reffer' => Setting::isEnabled('reffer_enabled', false) ? 'nullable|string|max:255' : 'sometimes|nullable',
             'email' => [
                 'required',
                 'email',
@@ -85,7 +87,7 @@ class RegisterController extends Controller
                     $request->email,
                     $accountStatus,
                     $activation_token,
-                    $request->reffer,
+                    Setting::isEnabled('reffer_enabled', false) ? $request->reffer : null,
                 ]
             );
 

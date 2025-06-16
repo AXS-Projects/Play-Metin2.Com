@@ -114,20 +114,22 @@
                                     </div>
                                 </div>
 
-                                <!-- Invitation Code (optional) -->
-                                <div class="relative form-group">
-                                    <label class="block text-sm font-medium text-green-400 mb-1">{{ __('messages.page_register_invite_code') }}</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                            </svg>
+                                @if ($refferEnabled)
+                                    <!-- Invitation Code (optional) -->
+                                    <div class="relative form-group">
+                                        <label class="block text-sm font-medium text-green-400 mb-1">{{ __('messages.page_register_invite_code') }}</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                </svg>
+                                            </div>
+                                            <input type="text" name="reffer" id="reffer"
+                                                class="w-full pl-10 pr-3 py-2 bg-dark-700 border border-green-900 focus:border-green-500 rounded-md text-gray-200 focus:outline-none focus:ring-1 focus:ring-green-500"
+                                                value="{{ old('reffer') }}">
                                         </div>
-                                        <input type="text" name="reffer" id="reffer"
-                                            class="w-full pl-10 pr-3 py-2 bg-dark-700 border border-green-900 focus:border-green-500 rounded-md text-gray-200 focus:outline-none focus:ring-1 focus:ring-green-500"
-                                            value="{{ old('reffer') }}">
                                     </div>
-                                </div>
+                                @endif
 
                                 <!-- Password -->
                                 <div class="relative form-group">

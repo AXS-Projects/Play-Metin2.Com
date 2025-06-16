@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -49,5 +50,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'player@metin2.com',
         ]);
         $playerUser->assignRole('player');
+
+        // Default settings
+        Setting::firstOrCreate([
+            'key' => 'reffer_enabled',
+        ], [
+            'value' => '1',
+        ]);
     }
 }
