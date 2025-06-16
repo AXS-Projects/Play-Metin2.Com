@@ -15,6 +15,7 @@ use App\Http\Livewire\Auth\Metin2Login;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ItemShopController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NewsController;
 
 // Aplica middleware-ul global pentru toate rutele
 Route::middleware([LanguageMiddleware::class])->group(function () {
@@ -30,7 +31,14 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 	
 	Route::get('/download', [DownloadController::class, 'index'])->name('download');
 	
-	Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
+        Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
+
+        // News routes
+        Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+        Route::post('/news/{slug}/comment', [NewsController::class, 'comment'])->name('news.comment');
+        Route::post('/comments/{comment}/like', [NewsController::class, 'like'])->name('comments.like');
+        Route::post('/comments/{comment}/dislike', [NewsController::class, 'dislike'])->name('comments.dislike');
 	
 	Route::post('/metin2/login', [Metin2AuthController::class, 'login'])->name('metin2.login');
 	Route::post('/metin2/logout', [Metin2AuthController::class, 'logout'])->name('metin2.logout');
