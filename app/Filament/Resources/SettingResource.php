@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 
 class SettingResource extends Resource
@@ -29,12 +30,20 @@ class SettingResource extends Resource
                     ->label('Setting Key')
                     ->required()
                     ->maxLength(255)
-                    ->unique(ignoreRecord: true),
+                    ->unique(ignoreRecord: true)
+                    ->disabled(fn (?Setting $record) => $record !== null),
+
+                Toggle::make('value')
+                    ->label('Enable Refer')
+                    ->visible(fn (callable $get) => $get('key') === 'reffer_enabled')
+                    ->dehydrateStateUsing(fn ($state) => $state ? '1' : '0')
+                    ->formatStateUsing(fn ($state) => (bool) $state),
 
                 TextInput::make('value')
                     ->label('Setting Value')
                     ->required()
-                    ->maxLength(1000),
+                    ->maxLength(1000)
+                    ->visible(fn (callable $get) => $get('key') !== 'reffer_enabled'),
             ]);
     }
 
