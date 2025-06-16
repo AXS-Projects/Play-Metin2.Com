@@ -29,6 +29,7 @@ class RegisterController extends Controller
             'username' => 'required|string|max:30|unique:account.account,login',
             'real_name' => 'required|string|max:255',
             'age' => 'required|integer|min:13',
+            'reffer' => 'nullable|string|max:255',
             'email' => [
                 'required',
                 'email',
@@ -75,16 +76,18 @@ class RegisterController extends Controller
             $accountStatus = $requireEmailVerification ? 'PENDING' : 'OK';
 
             // Inserare cont
-            DB::connection('account')->statement("
-                INSERT INTO account (login, password, email, status, created_at, updated_at, create_time, activation_token) 
-                VALUES (?, PASSWORD(?), ?, ?, NOW(), NOW(), NOW(), ?)
-            ", [
-                $request->username,
-                $request->password,
-                $request->email,
-                $accountStatus,
-                $activation_token,
-            ]);
+            DB::connection('account')->statement(
+                "INSERT INTO account (login, password, email, status, created_at, updated_at, create_time, activation_token, reffer)
+                VALUES (?, PASSWORD(?), ?, ?, NOW(), NOW(), NOW(), ?, ?)",
+                [
+                    $request->username,
+                    $request->password,
+                    $request->email,
+                    $accountStatus,
+                    $activation_token,
+                    $request->reffer,
+                ]
+            );
 
             // Dacă activarea prin email este necesară, trimitem email-ul
             if ($requireEmailVerification) {

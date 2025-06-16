@@ -22,5 +22,6 @@ class Account extends Model
         'register_ip',
         'ban_until',
         'ban_reason',
+        'reffer',
     ];
 }

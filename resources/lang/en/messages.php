@@ -91,6 +91,7 @@ return [
     'page_register_username' => 'Username',
     'page_register_real_name' => 'Real Name',
     'page_register_age' => 'Age',
+    'page_register_invite_code' => 'Invitation Code (optional)',
     'page_register_email' => 'Email',
     'page_register_repeat_email' => 'Repeat Email',
     'page_register_password' => 'Password',
