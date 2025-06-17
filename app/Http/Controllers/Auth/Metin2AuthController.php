@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Metin2User;
 
 class Metin2AuthController extends Controller
@@ -28,11 +29,25 @@ class Metin2AuthController extends Controller
                 return back()->with('error', __('messages.auth_username_invalid'));
             }
 
-            // Verifică parola folosind MySQL PASSWORD()
-            $passwordCheck = DB::connection('account')
-                ->selectOne("SELECT PASSWORD(?) as hashed", [$request->password]);
+            // Validare parola cu Hash::check
+            $validPassword = Hash::check($request->password, $user->password);
 
-            if (!$passwordCheck || $passwordCheck->hashed !== $user->password) {
+            // Backward compatibility pentru parole vechi
+            if (!$validPassword) {
+                $passwordCheck = DB::connection('account')
+                    ->selectOne("SELECT PASSWORD(?) as hashed", [$request->password]);
+
+                if ($passwordCheck && $passwordCheck->hashed === $user->password) {
+                    $validPassword = true;
+                    // Migrare la noul algoritm
+                    $newHash = Hash::make($request->password);
+                    DB::connection('account')->table('account')->where('id', $user->id)
+                        ->update(['password' => $newHash]);
+                    $user->password = $newHash;
+                }
+            }
+
+            if (!$validPassword) {
                 return back()->with('error', __('messages.auth_password_invalid'));
             }
 

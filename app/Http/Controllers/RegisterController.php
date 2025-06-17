@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Account;
 use App\Mail\AccountActivationMail;
@@ -77,19 +78,20 @@ class RegisterController extends Controller
             // Setăm statusul contului
             $accountStatus = $requireEmailVerification ? 'PENDING' : 'OK';
 
-            // Inserare cont
-            DB::connection('account')->statement(
-                "INSERT INTO account (login, password, email, status, created_at, updated_at, create_time, activation_token, reffer)
-                VALUES (?, PASSWORD(?), ?, ?, NOW(), NOW(), NOW(), ?, ?)",
-                [
-                    $request->username,
-                    $request->password,
-                    $request->email,
-                    $accountStatus,
-                    $activation_token,
-                    Setting::isEnabled('reffer_enabled', false) ? $request->reffer : null,
-                ]
-            );
+            // Inserare cont folosind hashing modern
+            $hashedPassword = Hash::make($request->password);
+
+            DB::connection('account')->table('account')->insert([
+                'login' => $request->username,
+                'password' => $hashedPassword,
+                'email' => $request->email,
+                'status' => $accountStatus,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'create_time' => now(),
+                'activation_token' => $activation_token,
+                'reffer' => Setting::isEnabled('reffer_enabled', false) ? $request->reffer : null,
+            ]);
 
             // Dacă activarea prin email este necesară, trimitem email-ul
             if ($requireEmailVerification) {
