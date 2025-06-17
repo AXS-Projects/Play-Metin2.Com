@@ -31,6 +31,7 @@ return [
     'auth_password_invalid' => 'Parola este incorectă.',
     'auth_success' => 'Te-ai autentificat cu succes.',
     'auth_logout' => 'Te-ai deconectat cu succes.',
+    'error_not_authenticated' => 'Trebuie să fii autentificat pentru a accesa această pagină.',
 
     // Sidebar Right - Logged In
     'sidebar_right_welcome' => 'Bine ai venit,',

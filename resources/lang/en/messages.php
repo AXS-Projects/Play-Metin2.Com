@@ -31,6 +31,7 @@ return [
     'auth_password_invalid' => 'Password is incorrect.',
     'auth_success' => 'You have successfully logged in.',
     'auth_logout' => 'You have been logged out successfully.',
+    'error_not_authenticated' => 'You must be authenticated to access this page.',
 
     // Sidebar Right - Logged In
     'sidebar_right_welcome' => 'Welcome,',
