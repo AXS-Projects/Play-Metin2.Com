@@ -24,3 +24,12 @@ The application includes the following functionality:
 4. Run `php artisan migrate`.
 5. Start the development server using `php artisan serve`.
 
+## Testing
+
+Run the test suite with:
+
+```bash
+composer test
+```
+
+
