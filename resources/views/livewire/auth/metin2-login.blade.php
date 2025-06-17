@@ -31,6 +31,9 @@
             <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
                 {{ __('messages.sidebar_right_login_button') }}
             </button>
+            <div class="text-center mt-2">
+                <a href="{{ route('password.request') }}" class="text-sm text-gray-400 hover:underline">{{ __('messages.sidebar_right_forgot_password') }}</a>
+            </div>
         </form>
 
         <div class="mt-4 text-center text-sm text-gray-400">

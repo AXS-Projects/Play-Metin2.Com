@@ -17,6 +17,7 @@ use App\Http\Controllers\ItemShopController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ForgotPasswordController;
 
 // Aplica middleware-ul global pentru toate rutele
 Route::middleware([LanguageMiddleware::class])->group(function () {
@@ -47,6 +48,13 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         Route::post('/gallery/{item}/comment', [GalleryController::class, 'comment'])->name('gallery.comment');
         Route::post('/gallery/comments/{comment}/like', [GalleryController::class, 'like'])->name('gallery.comments.like');
         Route::post('/gallery/comments/{comment}/dislike', [GalleryController::class, 'dislike'])->name('gallery.comments.dislike');
+
+        // Password reset routes
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset.form');
+        Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update.reset');
+        Route::get('/cancel-reset/{token}', [ForgotPasswordController::class, 'cancel'])->name('password.reset.cancel');
 	
 	Route::post('/metin2/login', [Metin2AuthController::class, 'login'])->name('metin2.login');
 	Route::post('/metin2/logout', [Metin2AuthController::class, 'logout'])->name('metin2.logout');
