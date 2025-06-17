@@ -24,6 +24,16 @@ The application includes the following functionality:
 4. Run `php artisan migrate`.
 5. Start the development server using `php artisan serve`.
 
+## Development
+
+For an all-in-one development environment that also runs the queue worker and Vite in watch mode you can use the Composer script:
+
+```bash
+composer dev
+```
+
+This starts the application server, queue listener, log viewer and the asset build process concurrently.
+
 ## Testing
 
 Run the test suite with:
