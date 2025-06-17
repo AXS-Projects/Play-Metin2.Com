@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Models\Account;
+use App\Observers\AccountObserver;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -23,16 +25,18 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-	public function boot(): void
-	{
-		// ✅ Aplică limba din sesiune dacă există
-		if (Session::has('locale')) {
-			App::setLocale(Session::get('locale'));
+    public function boot(): void
+    {
+        // ✅ Aplică limba din sesiune dacă există
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
 
-			Log::info('AppServiceProvider Applied Language:', [
-				'Session Locale' => Session::get('locale'),
-				'App Locale' => App::getLocale(),
-			]);
-		}
-	}
+            Log::info('AppServiceProvider Applied Language:', [
+                'Session Locale' => Session::get('locale'),
+                'App Locale' => App::getLocale(),
+            ]);
+        }
+
+        Account::observe(AccountObserver::class);
+    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Metin2User;
+use App\Models\AuditLog;
 
 class Metin2AuthController extends Controller
 {
@@ -54,6 +55,13 @@ class Metin2AuthController extends Controller
             // ✅ Logare utilizator
             Auth::guard('metin2')->login($user);
 
+            AuditLog::create([
+                'user_id' => $user->id,
+                'action' => 'login',
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+
             return redirect()->back()->with('success', __('messages.auth_success'));
 
         } catch (\Exception $e) {
@@ -68,9 +76,19 @@ class Metin2AuthController extends Controller
      */
     public function logout(Request $request)
     {
+        $user = Auth::guard('metin2')->user();
         Auth::guard('metin2')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        if ($user) {
+            AuditLog::create([
+                'user_id' => $user->id,
+                'action' => 'logout',
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+        }
 
         return redirect()->back()->with('success', __('messages.auth_logout'));
     }

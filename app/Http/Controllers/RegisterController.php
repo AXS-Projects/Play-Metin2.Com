@@ -12,6 +12,7 @@ use App\Mail\AccountActivationMail;
 use Illuminate\Support\Str;
 use Anhskohbo\NoCaptcha\NoCaptcha;
 use App\Models\Setting;
+use App\Models\AuditLog;
 
 class RegisterController extends Controller
 {
@@ -81,7 +82,7 @@ class RegisterController extends Controller
             // Inserare cont folosind hashing modern
             $hashedPassword = Hash::make($request->password);
 
-            DB::connection('account')->table('account')->insert([
+            $accountId = DB::connection('account')->table('account')->insertGetId([
                 'login' => $request->username,
                 'password' => $hashedPassword,
                 'email' => $request->email,
@@ -91,6 +92,13 @@ class RegisterController extends Controller
                 'create_time' => now(),
                 'activation_token' => $activation_token,
                 'reffer' => Setting::isEnabled('reffer_enabled', false) ? $request->reffer : null,
+            ]);
+
+            AuditLog::create([
+                'user_id' => $accountId,
+                'action' => 'register',
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
             ]);
 
             // Dacă activarea prin email este necesară, trimitem email-ul
