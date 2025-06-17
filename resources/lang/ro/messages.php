@@ -139,5 +139,23 @@ return [
     'password_updated' => 'Parola ta a fost schimbată cu succes!',
     'error_current_password' => 'Parola curentă este incorectă.',
     'error_password_mismatch' => 'Parolele noi nu se potrivesc.',
+
+    // RESETARE PAROLA
+    'forgot_password_title' => 'Recuperare Parolă',
+    'reset_password_title' => 'Resetează Parola',
+    'send_reset_link' => 'Trimite linkul de resetare',
+    'password_reset_link_sent' => 'Ți-am trimis un email cu linkul de resetare!',
+    'password_reset_link_invalid' => 'Nu există niciun utilizator cu acest email.',
+    'reset_password' => 'Resetează Parola',
+    'cancel_reset' => 'Anulează Resetarea',
+    'password_reset_success' => 'Parola ta a fost resetată cu succes.',
+    'password_reset_email_subject' => 'Solicitare Resetare Parolă',
+    'password_reset_email_greeting' => 'Salut, :username',
+    'password_reset_email_line1' => 'Ai primit acest email deoarece s-a solicitat o resetare a parolei contului tău.',
+    'password_reset_email_line2' => 'Apasă pe butonul de mai jos pentru a-ți reseta parola:',
+    'password_reset_email_cancel' => 'Dacă nu ai solicitat resetarea parolei, apasă aici:',
+    'password_reset_email_button' => 'Resetează Parola',
+    'password_reset_email_cancel_button' => 'Anulează cererea',
+    'password_reset_email_disregard' => 'Dacă nu ai solicitat resetarea parolei, ignoră acest email.',
     
 ];

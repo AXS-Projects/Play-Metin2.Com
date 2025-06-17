@@ -438,6 +438,9 @@
                                         {{ __('messages.menu_register') }}
                                     </a>
                                 </div>
+                                <div class="text-center mt-2">
+                                    <a href="{{ route('password.request') }}" class="text-sm text-gray-400 hover:underline">{{ __('messages.sidebar_right_forgot_password') }}</a>
+                                </div>
                             </form>
                         </div>
                     </div>

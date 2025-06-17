@@ -140,5 +140,23 @@ return [
     'error_current_password' => 'The current password is incorrect.',
     'error_password_mismatch' => 'New passwords do not match.',
 
+    // PASSWORD RESET
+    'forgot_password_title' => 'Forgot Password',
+    'reset_password_title' => 'Reset Password',
+    'send_reset_link' => 'Send Reset Link',
+    'password_reset_link_sent' => 'We have emailed your password reset link!',
+    'password_reset_link_invalid' => 'No user found with that email.',
+    'reset_password' => 'Reset Password',
+    'cancel_reset' => 'Cancel Password Reset',
+    'password_reset_success' => 'Your password has been reset successfully.',
+    'password_reset_email_subject' => 'Password Reset Request',
+    'password_reset_email_greeting' => 'Hello, :username',
+    'password_reset_email_line1' => 'You are receiving this email because we received a password reset request for your account.',
+    'password_reset_email_line2' => 'Click the button below to reset your password:',
+    'password_reset_email_cancel' => 'If you did not request a password reset, click here:',
+    'password_reset_email_button' => 'Reset Password',
+    'password_reset_email_cancel_button' => 'Cancel Request',
+    'password_reset_email_disregard' => 'If you did not request a password reset, no further action is required.',
+
 ];
 
