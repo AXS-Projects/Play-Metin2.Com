@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use App\Models\Metin2User;
 use App\Models\AuditLog;
 
@@ -22,6 +24,12 @@ class Metin2AuthController extends Controller
                 'login' => 'required|string',
                 'password' => 'required|string',
             ]);
+
+            $throttleKey = Str::lower($request->login).'|'.$request->ip();
+            if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+                $seconds = RateLimiter::availableIn($throttleKey);
+                return back()->with('error', __('messages.auth_throttle', ['seconds' => $seconds]));
+            }
 
             // Caută utilizatorul în baza de date
             $user = Metin2User::where('login', $request->login)->first();
@@ -49,11 +57,14 @@ class Metin2AuthController extends Controller
             }
 
             if (!$validPassword) {
+                RateLimiter::hit($throttleKey);
                 return back()->with('error', __('messages.auth_password_invalid'));
             }
 
             // ✅ Logare utilizator
-            Auth::guard('metin2')->login($user);
+            RateLimiter::clear($throttleKey);
+
+            Auth::guard('metin2')->login($user, $request->boolean('remember'));
 
             AuditLog::create([
                 'user_id' => $user->id,
@@ -90,6 +101,6 @@ class Metin2AuthController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', __('messages.auth_logout'));
+        return redirect()->route('index')->with('success', __('messages.auth_logout'));
     }
 }
