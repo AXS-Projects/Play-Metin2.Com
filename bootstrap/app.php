@@ -9,6 +9,7 @@ use App\Http\Middleware\AdminAccessMiddleware;
 use App\Http\Middleware\LanguageMiddleware;
 use App\Http\Middleware\GuildsMiddleware;
 use App\Http\Middleware\TopPlayersMiddleware;
+use App\Http\Middleware\LatestNewsMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,8 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         // Middleware-urile trebuie să ruleze în ordinea corectă
-        $middleware->prepend(TopPlayersMiddleware::class); // ✅ Limba trebuie setată prima
-        $middleware->prepend(GuildsMiddleware::class);  // ✅ Adăugăm middleware-ul pentru bresle
+        $middleware->prepend(TopPlayersMiddleware::class);
+        $middleware->prepend(GuildsMiddleware::class);
+        $middleware->prepend(LatestNewsMiddleware::class);
         $middleware->prepend(LanguageMiddleware::class); // ✅ Limba trebuie setată prima
 
         // Alias-uri pentru middleware-uri personalizate
@@ -28,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'language' => LanguageMiddleware::class,
             'guilds' => GuildsMiddleware::class, // ✅ Permite utilizarea `->middleware('guilds')` în rute
             'metin2.auth' => \App\Http\Middleware\Metin2AuthMiddleware::class, // ✅ Alias pentru middleware-ul de autentificare Metin2
+            'latest.news' => LatestNewsMiddleware::class,
 
         ]);
     })

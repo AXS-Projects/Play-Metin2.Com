@@ -135,6 +135,26 @@
                         </div>
                     </div>
                 </div>
+                <!-- Latest News -->
+                <div class="glassmorphism rounded-xl overflow-hidden">
+                    <div class="bg-gradient-to-r from-purple-800 to-purple-900 py-3 px-4 border-b border-purple-700">
+                        <h2 class="text-lg font-semibold text-purple-300 text-center">{{ __('messages.sidebar_left_latest_news_title') }}</h2>
+                    </div>
+                    <div class="p-4">
+                        <ul class="divide-y divide-gray-800">
+                            @foreach ($latestNewsSidebar as $news)
+                                <li class="py-2">
+                                    <a href="{{ route('news.show', $news->slug) }}" class="text-gray-300 hover:text-white truncate block">{{ e($news->title) }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <a href="{{ route('news.index') }}" class="inline-block px-6 py-2 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 transform hover:scale-105 glow-button" aria-label="View all news">
+                                {{ __('messages.sidebar_left_latest_news_view_all') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </aside>
 
             <!-- Main Content -->
@@ -239,10 +259,16 @@
                                     {{ session('error') }}
                                 </div>
                             @endif
+                            @if(session('success'))
+                                <div class="px-4 py-2 mb-4 rounded-lg shadow-lg bg-green-600 text-white text-center text-sm" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             
                             <form action="{{ route('metin2.login') }}" method="POST" class="space-y-4">
                                 @csrf
                                 <div class="relative">
+                                    <label for="login-input" class="sr-only">{{ __('messages.sidebar_right_login_username') }}</label>
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -251,8 +277,9 @@
                                     <input type="text" name="login" id="login-input" placeholder="{{ __('messages.sidebar_right_login_username') }}"
                                         class="w-full pl-10 p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-green-500 focus:outline-none transition-colors" aria-required="true">
                                 </div>
-                                
+
                                 <div class="relative">
+                                    <label for="password-input" class="sr-only">{{ __('messages.sidebar_right_login_password') }}</label>
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
@@ -260,6 +287,11 @@
                                     </div>
                                     <input type="password" name="password" id="password-input" placeholder="{{ __('messages.sidebar_right_login_password') }}"
                                         class="w-full pl-10 p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-green-500 focus:outline-none transition-colors" aria-required="true">
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-green-600">
+                                    <label for="remember" class="ml-2 text-sm text-gray-300">{{ __('messages.sidebar_right_login_remember') }}</label>
                                 </div>
                                 
                                 <div class="flex space-x-3">
