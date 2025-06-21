@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -23,6 +24,10 @@ class NewsController extends Controller
 
     public function comment(Request $request, $slug)
     {
+        if (!Auth::guard('metin2')->check()) {
+            return redirect()->back()->with('error', __('messages.error_not_authenticated'));
+        }
+
         $request->validate([
             'content' => 'required|string',
         ]);
@@ -30,7 +35,7 @@ class NewsController extends Controller
         $news = News::where('slug', $slug)->firstOrFail();
 
         $news->comments()->create([
-            'author' => $request->input('author'),
+            'author' => Auth::guard('metin2')->user()->login,
             'content' => $request->input('content'),
         ]);
 
