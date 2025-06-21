@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'News')
+@section('title', $pageTitle ?? 'News')
 
 @section('content')
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700 mb-6">
-    <h2 class="text-xl font-semibold mb-4 text-green-400">Latest News & Events</h2>
+    <h2 class="text-xl font-semibold mb-4 text-green-400">{{ $heading ?? 'Latest News & Events' }}</h2>
 
     <div class="space-y-4">
         @foreach ($news as $post)
@@ -12,7 +12,10 @@
                 <h3 class="font-bold text-yellow-400 text-lg">{{ $post->title }}</h3>
                 <div class="text-xs text-gray-400 mb-1">
                     @if($post->author)
-                        {{ __('By') }} {{ $post->author }} ·
+                        {{ __('Posted by:') }} <a href="{{ route('news.author', ['author' => $post->author]) }}" class="hover:underline">{{ $post->author }}</a> ·
+                    @endif
+                    @if($post->category)
+                        <a href="{{ route('news.category', $post->category->slug) }}" class="hover:underline">{{ $post->category->name }}</a> ·
                     @endif
                     {{ $post->created_at->format('M d, Y') }} · {{ $post->views }} views · {{ $post->comments_count }} comments
                 </div>

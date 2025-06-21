@@ -7,7 +7,10 @@
     <h2 class="text-2xl font-bold mb-1 text-green-400">{{ $news->title }}</h2>
     <div class="text-xs text-gray-400 mb-4">
         @if($news->author)
-            {{ __('By') }} {{ $news->author }} ·
+            {{ __('Posted by:') }} <a href="{{ route('news.author', ['author' => $news->author]) }}" class="hover:underline">{{ $news->author }}</a> ·
+        @endif
+        @if($news->category)
+            <a href="{{ route('news.category', $news->category->slug) }}" class="hover:underline">{{ $news->category->name }}</a> ·
         @endif
         {{ $news->created_at->format('M d, Y') }} · {{ $news->views }} views · {{ $comments->count() }} comments
     </div>

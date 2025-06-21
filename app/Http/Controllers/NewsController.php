@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Comment;
+use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,13 +12,13 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::withCount('comments')->latest()->paginate(10);
+        $news = News::with('category')->withCount('comments')->latest()->paginate(10);
         return view('news.index', compact('news'));
     }
 
     public function show($slug)
     {
-        $news = News::where('slug', $slug)->firstOrFail();
+        $news = News::with('category')->where('slug', $slug)->firstOrFail();
         $news->increment('views');
         $comments = $news->comments()->latest()->get();
         return view('news.show', compact('news', 'comments'));
@@ -53,5 +54,30 @@ class NewsController extends Controller
     {
         $comment->increment('dislikes');
         return redirect()->back();
+    }
+
+    public function category($slug)
+    {
+        $category = NewsCategory::where('slug', $slug)->firstOrFail();
+        $news = News::with('category')
+            ->where('news_category_id', $category->id)
+            ->withCount('comments')
+            ->latest()
+            ->paginate(10);
+        $heading = 'Category: ' . $category->name;
+        $pageTitle = $category->name . ' News';
+        return view('news.index', compact('news', 'heading', 'pageTitle'));
+    }
+
+    public function author($author)
+    {
+        $news = News::with('category')
+            ->where('author', $author)
+            ->withCount('comments')
+            ->latest()
+            ->paginate(10);
+        $heading = 'News posted by ' . $author;
+        $pageTitle = 'Posts by ' . $author;
+        return view('news.index', compact('news', 'heading', 'pageTitle'));
     }
 }

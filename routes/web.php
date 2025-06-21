@@ -40,6 +40,8 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 
         // News routes
         Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/news/category/{slug}', [NewsController::class, 'category'])->name('news.category');
+        Route::get('/news/author/{author}', [NewsController::class, 'author'])->name('news.author');
         Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
         Route::post('/news/{slug}/comment', [NewsController::class, 'comment'])->name('news.comment');
         Route::post('/comments/{comment}/like', [NewsController::class, 'like'])->name('comments.like');
