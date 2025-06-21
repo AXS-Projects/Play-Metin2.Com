@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Models\Account;
 use App\Models\AuditLog;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
+use Stevebauman\Location\Facades\Location;
 
 class AccountObserver
 {
@@ -23,12 +25,21 @@ class AccountObserver
 
         if (! empty($changes)) {
             $request = request();
+            $agent = new Agent();
+            $agent->setUserAgent($request->userAgent());
+            $position = Location::get($request->ip());
+            $location = $position ? ($position->city . ', ' . $position->countryName) : null;
             AuditLog::create([
                 'user_id' => Auth::id(),
+                'username' => Auth::user()?->login,
                 'action' => 'account_update',
                 'details' => 'Account '.$account->id.' updated: '.implode('; ', $changes),
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
+                'session_id' => $request->session()->getId(),
+                'browser' => $agent->browser(),
+                'platform' => $agent->platform(),
+                'location' => $location,
             ]);
         }
     }

@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use Anhskohbo\NoCaptcha\NoCaptcha;
 use App\Models\Setting;
 use App\Models\AuditLog;
+use Jenssegers\Agent\Agent;
+use Stevebauman\Location\Facades\Location;
 
 class RegisterController extends Controller
 {
@@ -93,11 +95,20 @@ class RegisterController extends Controller
                 'reffer' => Setting::isEnabled('reffer_enabled', false) ? $request->reffer : null,
             ]);
 
+            $agent = new Agent();
+            $agent->setUserAgent($request->userAgent());
+            $position = Location::get($request->ip());
+            $location = $position ? ($position->city . ', ' . $position->countryName) : null;
             AuditLog::create([
                 'user_id' => $accountId,
+                'username' => $request->username,
                 'action' => 'register',
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
+                'session_id' => $request->session()->getId(),
+                'browser' => $agent->browser(),
+                'platform' => $agent->platform(),
+                'location' => $location,
             ]);
 
             // Dacă activarea prin email este necesară, trimitem email-ul
