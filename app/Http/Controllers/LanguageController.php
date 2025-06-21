@@ -11,7 +11,7 @@ class LanguageController extends Controller
 {
     public function switchLang($lang)
     {
-        if (in_array($lang, ['en', 'ro', 'fr'])) {
+        if (in_array($lang, ['en', 'ro', 'fr', 'de', 'tr'])) {
             Session::put('locale', $lang);
             App::setLocale($lang);
             Log::info('Language Switched:', [
