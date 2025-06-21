@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Reaction;
 
 class GalleryComment extends Model
 {
@@ -14,5 +15,10 @@ class GalleryComment extends Model
     public function galleryItem()
     {
         return $this->belongsTo(GalleryItem::class);
+    }
+
+    public function reactions()
+    {
+        return $this->morphMany(Reaction::class, 'reactionable');
     }
 }
