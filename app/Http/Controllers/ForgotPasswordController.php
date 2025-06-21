@@ -71,7 +71,7 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect()->route('metin2.login')->with('success', __('messages.password_reset_success'));
+        return redirect()->route('index')->with('success', __('messages.password_reset_success'));
     }
 
     public function cancel(Request $request, string $token)

@@ -29,7 +29,7 @@ class PasswordController extends Controller
         $sessionUser = session('metin2_user');
     
         if (!$sessionUser) {
-            return redirect()->route('metin2.login')->withErrors(['current_password' => __('messages.error_not_authenticated')]);
+            return redirect()->route('index')->withErrors(['current_password' => __('messages.error_not_authenticated')]);
         }
     
         // 🔹 3. Verificăm dacă utilizatorul există în baza de date
