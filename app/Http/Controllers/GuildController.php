@@ -57,7 +57,7 @@ class GuildController extends Controller
 
         return view('top-guilds', [
             'guilds' => $guilds,
-            'title' => ' - Top Guilds'
+            'title' => 'Top Guilds'
         ]);        
     }
 }

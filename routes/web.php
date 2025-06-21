@@ -74,21 +74,6 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         // Change Password
         Route::get('/change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');
         Route::post('/change-password', [PasswordController::class, 'updatePassword'])->name('password.update');
-
-        // Item Shop
-        Route::get('/itemshop', [ItemShopController::class, 'index'])->name('itemshop');
-        Route::get('/itemshop/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
-
-        // Tickets
-        Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
-        Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
-        Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
-        Route::get('/tickets/{ticket}', [TicketController::class, 'show'])->name('tickets.show');
-        Route::post('/tickets/{ticket}/message', [TicketController::class, 'addMessage'])->name('tickets.message');
-    });
-
-    Route::get('/check-auth', function () {
-        return response()->json(['authenticated' => session()->has('metin2_user')]);
     });
 
 });

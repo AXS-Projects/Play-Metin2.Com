@@ -172,5 +172,12 @@ return [
     'status' => 'Statut',
     'response' => 'Răspuns',
     'posted_by' => 'Postat de:',
+    'event_starts_in' => 'Începe în :time',
+    'event_started_ago' => 'A început acum :time',
     'news' => 'Ştiri',
+    'character_management' => 'Managementul personajelor',
+    'characters' => 'Personaje',
+    'my_characters' => 'Personajele mele',
+    'no_characters_found' => 'Nu s-au găsit personaje.',
+    'play_time' => 'Timp jucat',
 ];

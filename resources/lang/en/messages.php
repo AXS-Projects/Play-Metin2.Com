@@ -172,5 +172,12 @@ return [
     'status' => 'Status',
     'response' => 'Response',
     'posted_by' => 'Posted by:',
+    'event_starts_in' => 'Starts in :time',
+    'event_started_ago' => 'Started :time ago',
     'news' => 'News',
+    'character_management' => 'Character Management',
+    'characters' => 'Characters',
+    'my_characters' => 'My Characters',
+    'no_characters_found' => 'No characters found.',
+    'play_time' => 'Playtime',
 ];

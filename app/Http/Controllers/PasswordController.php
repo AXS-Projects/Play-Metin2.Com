@@ -13,7 +13,7 @@ class PasswordController extends Controller
     public function showChangePasswordForm()
     {
         return view('auth.change-password', [
-            'title' => ' - Change Password',
+            'title' => 'Change Password',
         ]);
     }
 

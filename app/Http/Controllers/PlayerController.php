@@ -83,7 +83,7 @@ return view('top-players', [
     'maxLevel' => $maxLevel,
     'minPlaytime' => $minPlaytime,
     'maxPlaytime' => $maxPlaytime,
-    'title' => ' - Top Players',
+    'title' => 'Top Players',
 ]);
 
     }
