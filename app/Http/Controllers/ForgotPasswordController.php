@@ -15,7 +15,7 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         return view('auth.forgot-password', [
-            'title' => ' - '.__('messages.forgot_password_title'),
+            'title' => __('messages.forgot_password_title'),
         ]);
     }
 
@@ -48,7 +48,7 @@ class ForgotPasswordController extends Controller
     public function showResetForm(string $token)
     {
         return view('auth.reset-password', [
-            'title' => ' - '.__('messages.reset_password_title'),
+            'title' => __('messages.reset_password_title'),
             'token' => $token,
         ]);
     }

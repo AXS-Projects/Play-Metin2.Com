@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function showRegisterForm()
     {
         return view('register', [
-            'title' => ' - Register', // Titlul pentru pagina de înregistrare
+            'title' => 'Register', // Titlul pentru pagina de înregistrare
             'refferEnabled' => Setting::isEnabled('reffer_enabled', false),
         ]);
     }
