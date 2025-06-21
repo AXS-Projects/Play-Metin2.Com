@@ -20,18 +20,23 @@ class GalleryController extends Controller
 
     public function show(GalleryItem $item)
     {
+        $item->increment('views');
         $comments = $item->comments()->latest()->get();
         return view('gallery.show', compact('item', 'comments'));
     }
 
     public function comment(Request $request, GalleryItem $item)
     {
+        if (!Auth::guard('metin2')->check()) {
+            return redirect()->back()->with('error', __('messages.error_not_authenticated'));
+        }
+
         $request->validate([
             'content' => 'required|string',
         ]);
 
         $item->comments()->create([
-            'author' => $request->input('author'),
+            'author' => Auth::guard('metin2')->user()->login,
             'content' => $request->input('content'),
         ]);
 
@@ -47,6 +52,18 @@ class GalleryController extends Controller
     public function dislike(GalleryComment $comment)
     {
         $this->react($comment, false);
+        return redirect()->back();
+    }
+
+    public function likeItem(GalleryItem $item)
+    {
+        $this->react($item, true);
+        return redirect()->back();
+    }
+
+    public function dislikeItem(GalleryItem $item)
+    {
+        $this->react($item, false);
         return redirect()->back();
     }
 
