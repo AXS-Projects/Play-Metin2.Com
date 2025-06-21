@@ -141,26 +141,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Latest News -->
-                <div class="glassmorphism rounded-xl overflow-hidden">
-                    <div class="bg-gradient-to-r from-purple-800 to-purple-900 py-3 px-4 border-b border-purple-700">
-                        <h2 class="text-lg font-semibold text-purple-300 text-center">{{ __('messages.sidebar_left_latest_news_title') }}</h2>
-                    </div>
-                    <div class="p-4">
-                        <ul class="divide-y divide-gray-800">
-                            @foreach ($latestNewsSidebar as $news)
-                                <li class="py-2">
-                                    <a href="{{ route('news.show', $news->slug) }}" class="text-gray-300 hover:text-white truncate block">{{ e($news->title) }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                        <div class="mt-4 text-center">
-                            <a href="{{ route('news.index') }}" class="inline-block px-6 py-2 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300 transform hover:scale-105 glow-button" aria-label="View all news">
-                                {{ __('messages.sidebar_left_latest_news_view_all') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </aside>
 
             <!-- Main Content -->
