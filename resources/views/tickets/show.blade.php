@@ -4,13 +4,23 @@
 @section('content')
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">
     <h2 class="text-xl font-semibold mb-4 text-green-400">{{ $ticket->title }}</h2>
-    <p class="text-gray-300 mb-4">{{ $ticket->message }}</p>
     <p class="text-sm text-gray-500">{{ __('messages.status') }}: {{ $ticket->status }}</p>
-    @if($ticket->response)
-        <div class="mt-4 p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700">
-            <h3 class="text-lg font-semibold mb-2 text-blue-400">{{ __('messages.response') }}</h3>
-            <p class="text-gray-300">{{ $ticket->response }}</p>
-        </div>
+
+    <div class="space-y-4 mt-4">
+        @foreach($ticket->messages as $message)
+            <div class="bg-black bg-opacity-50 rounded-lg p-4 border border-gray-700">
+                <div class="text-gray-300">{{ $message->content }}</div>
+                <div class="text-xs text-gray-400 mt-1">{{ __('messages.posted_by') }} {{ $message->author }} · {{ $message->created_at->diffForHumans() }}</div>
+            </div>
+        @endforeach
+    </div>
+
+    @if($ticket->status === 'open')
+        <form action="{{ route('tickets.message', $ticket) }}" method="POST" class="mt-4 space-y-2">
+            @csrf
+            <textarea name="message" class="w-full p-2 bg-gray-800 text-white rounded" rows="4" required></textarea>
+            <button class="px-4 py-2 bg-green-600 text-white rounded">{{ __('messages.submit') }}</button>
+        </form>
     @endif
 </div>
 @endsection

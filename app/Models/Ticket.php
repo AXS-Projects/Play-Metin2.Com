@@ -11,6 +11,11 @@ class Ticket extends Model
 
     protected $fillable = ['user_id', 'title', 'message', 'status', 'response'];
 
+    public function messages()
+    {
+        return $this->hasMany(TicketMessage::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(Metin2User::class, 'user_id');
