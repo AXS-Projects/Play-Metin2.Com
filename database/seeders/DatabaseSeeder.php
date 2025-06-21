@@ -57,5 +57,8 @@ class DatabaseSeeder extends Seeder
         ], [
             'value' => '1',
         ]);
+
+        // Seed static pages like Privacy Policy and Terms of Service
+        $this->call(PagesSeeder::class);
     }
 }
