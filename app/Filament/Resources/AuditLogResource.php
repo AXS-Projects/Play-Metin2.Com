@@ -52,6 +52,6 @@ class AuditLogResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()?->hasRole('admin');
+        return true;
     }
 }

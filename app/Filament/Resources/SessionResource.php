@@ -81,6 +81,6 @@ class SessionResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin']); // Doar adminii și moderatorii pot vedea sesiunile
+        return true;
     }
 }
