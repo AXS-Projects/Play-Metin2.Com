@@ -45,6 +45,7 @@
                                 <li><a href="/top-players" class="text-white hover:text-green-400 glow-link py-2">Rankings</a></li>
                                 <li><a href="/tickets" class="text-white hover:text-green-400 glow-link py-2">{{ __('messages.menu_tickets') }}</a></li>
                                 <li><a href="/guides" class="text-white hover:text-green-400 glow-link py-2">Guides</a></li>
+                                <li><a href="/contact" class="text-white hover:text-green-400 glow-link py-2">{{ __('messages.menu_contact') }}</a></li>
                             </ul>
                             
                             <!-- Language Switcher -->
@@ -82,6 +83,7 @@
                     <a href="/top-players" class="block px-3 py-2 rounded-md hover:bg-gray-700 transition">Rankings</a>
                     <a href="/tickets" class="block px-3 py-2 rounded-md hover:bg-gray-700 transition">{{ __('messages.menu_tickets') }}</a>
                     <a href="/guides" class="block px-3 py-2 rounded-md hover:bg-gray-700 transition">Guides</a>
+                    <a href="/contact" class="block px-3 py-2 rounded-md hover:bg-gray-700 transition">{{ __('messages.menu_contact') }}</a>
                 </div>
             </div>
         </header>
