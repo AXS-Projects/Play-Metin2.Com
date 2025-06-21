@@ -8,9 +8,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Resources\RelationManagers\HasManyRelationManager;
+use Filament\Resources\RelationManagers\RelationManager;
 
-class MessagesRelationManager extends HasManyRelationManager
+class MessagesRelationManager extends RelationManager
 {
     protected static string $relationship = 'messages';
 
