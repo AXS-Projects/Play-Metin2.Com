@@ -73,6 +73,10 @@ class TicketController extends Controller
             'content' => $request->message,
         ]);
 
+        if ($ticket->status === 'closed') {
+            $ticket->update(['status' => 'open']);
+        }
+
         return redirect()->back();
     }
 }

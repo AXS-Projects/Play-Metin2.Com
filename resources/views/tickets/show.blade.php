@@ -15,12 +15,10 @@
         @endforeach
     </div>
 
-    @if($ticket->status === 'open')
-        <form action="{{ route('tickets.message', $ticket) }}" method="POST" class="mt-4 space-y-2">
-            @csrf
-            <textarea name="message" class="w-full p-2 bg-gray-800 text-white rounded" rows="4" required></textarea>
-            <button class="px-4 py-2 bg-green-600 text-white rounded">{{ __('messages.submit') }}</button>
-        </form>
-    @endif
+    <form action="{{ route('tickets.message', $ticket) }}" method="POST" class="mt-4 space-y-2">
+        @csrf
+        <textarea name="message" class="w-full p-2 bg-gray-800 text-white rounded" rows="4" required></textarea>
+        <button class="px-4 py-2 bg-green-600 text-white rounded">{{ __('messages.submit') }}</button>
+    </form>
 </div>
 @endsection

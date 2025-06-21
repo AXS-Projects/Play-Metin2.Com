@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TicketResource\Pages;
+use App\Filament\Resources\TicketResource\RelationManagers\MessagesRelationManager;
 use App\Models\Ticket;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -54,6 +55,13 @@ class TicketResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            MessagesRelationManager::class,
+        ];
     }
 
     public static function getPages(): array
