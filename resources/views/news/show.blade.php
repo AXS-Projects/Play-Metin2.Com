@@ -20,7 +20,12 @@
             <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Submit</button>
         </form>
     @else
-        <p class="mb-4 text-red-500">{{ __('messages.error_not_authenticated') }}</p>
+        <p class="mb-2 text-red-500">{{ __('messages.news_comment_login_required') }}</p>
+        <form class="mb-4">
+            <input type="text" value="Unknown" class="w-full mb-2 p-2 bg-gray-800 text-white rounded" disabled />
+            <textarea class="w-full p-2 bg-gray-800 text-white rounded" disabled></textarea>
+            <button class="mt-2 px-4 py-2 bg-gray-600 text-white rounded" disabled>Submit</button>
+        </form>
     @endif
 
     <div class="space-y-4">

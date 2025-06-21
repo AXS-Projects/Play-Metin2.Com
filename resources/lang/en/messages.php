@@ -165,5 +165,8 @@ return [
     'password_reset_email_cancel_button' => 'Cancel Request',
     'password_reset_email_disregard' => 'If you did not request a password reset, no further action is required.',
 
+    // Comments
+    'news_comment_login_required' => 'You must login to comment.',
+
 ];
 
