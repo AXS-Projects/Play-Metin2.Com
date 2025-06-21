@@ -20,7 +20,11 @@ class NewsController extends Controller
     {
         $news = News::with('category')->where('slug', $slug)->firstOrFail();
         $news->increment('views');
-        $comments = $news->comments()->latest()->get();
+        $comments = $news->comments()
+            ->whereNull('parent_id')
+            ->with('replies')
+            ->latest()
+            ->get();
         return view('news.show', compact('news', 'comments'));
     }
 
@@ -53,6 +57,37 @@ class NewsController extends Controller
     public function dislike(Comment $comment)
     {
         $comment->increment('dislikes');
+        return redirect()->back();
+    }
+
+    public function likeNews(News $news)
+    {
+        $news->increment('likes');
+        return redirect()->back();
+    }
+
+    public function dislikeNews(News $news)
+    {
+        $news->increment('dislikes');
+        return redirect()->back();
+    }
+
+    public function reply(Request $request, Comment $comment)
+    {
+        if (!Auth::guard('metin2')->check()) {
+            return redirect()->back()->with('error', __('messages.error_not_authenticated'));
+        }
+
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $comment->replies()->create([
+            'news_id' => $comment->news_id,
+            'author' => Auth::guard('metin2')->user()->login,
+            'content' => $request->input('content'),
+        ]);
+
         return redirect()->back();
     }
 

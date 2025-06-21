@@ -51,6 +51,9 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         Route::post('/news/{slug}/comment', [NewsController::class, 'comment'])->name('news.comment');
         Route::post('/comments/{comment}/like', [NewsController::class, 'like'])->name('comments.like');
         Route::post('/comments/{comment}/dislike', [NewsController::class, 'dislike'])->name('comments.dislike');
+        Route::post('/comments/{comment}/reply', [NewsController::class, 'reply'])->name('comments.reply');
+        Route::post('/news/{news}/like', [NewsController::class, 'likeNews'])->name('news.like');
+        Route::post('/news/{news}/dislike', [NewsController::class, 'dislikeNews'])->name('news.dislike');
 
         // Gallery routes
         Route::get('/screenshots', [GalleryController::class, 'index'])->name('gallery.index');
