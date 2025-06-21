@@ -196,6 +196,10 @@
                                 <button id="open-itemshop" class="w-full px-4 py-3 text-center rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 glow-button bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500" aria-label="Open Item Shop">
                                     🛒 Item-Shop
                                 </button>
+
+                                <a href="{{ route('coins.index') }}" class="block w-full px-4 py-3 text-center bg-green-600 hover:bg-green-500 text-white rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 glow-button" aria-label="Add Coins">
+                                    ➕ Add Coins
+                                </a>
                                 
                                 <!-- Change Password -->
                                 <a href="{{ route('password.change') }}" class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-500 text-white rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 glow-button" aria-label="Change Password">
