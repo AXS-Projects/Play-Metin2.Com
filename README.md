@@ -6,7 +6,7 @@ Play-Metin2 is a Laravel based web application used to manage accounts and featu
 
 The application includes the following functionality:
 
-- **Multi-language support** – users can switch between English, Romanian and French.
+- **Multi-language support** – users can switch between English, Romanian, French, German and Turkish.
 - **Account management** – registration with captcha and email activation, login/logout and password change.
 - **Rankings** – top players and top guilds pages with advanced filtering options.
 - **Download page** – lists game clients or patches with descriptions in the selected language.

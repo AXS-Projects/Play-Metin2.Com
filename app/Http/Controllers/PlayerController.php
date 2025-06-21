@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PlayerController extends Controller
 {
@@ -65,8 +66,19 @@ if ($maxPlaytime) {
     $query->where('p.playtime', '<=', $maxPlaytime);
 }
 
-// Paginație
-$players = $query->paginate(20);
+// Paginație cu caching pentru performanță
+$cacheKey = 'top_players_' . md5(json_encode([
+    $name,
+    $minLevel,
+    $maxLevel,
+    $minPlaytime,
+    $maxPlaytime,
+    $request->get('page', 1)
+]));
+
+$players = Cache::remember($cacheKey, 60, function () use ($query) {
+    return $query->paginate(20);
+});
 
 // Modifică jucătorii pentru a adăuga iconițele pentru primele 3 locuri
 $players->transform(function ($player, $index) {
