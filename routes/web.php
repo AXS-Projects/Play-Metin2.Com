@@ -9,6 +9,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GuildController;
 use App\Http\Controllers\ItemShopController;
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
@@ -78,6 +79,9 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         // Item Shop
         Route::get('/itemshop', [ItemShopController::class, 'index'])->name('itemshop');
         Route::get('/itemshop/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+        // Character Management
+        Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
 
         // Tickets
         Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
