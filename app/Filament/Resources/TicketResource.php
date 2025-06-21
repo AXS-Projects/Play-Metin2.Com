@@ -26,6 +26,10 @@ class TicketResource extends Resource
             TextInput::make('user_id')->numeric()->required(),
             TextInput::make('title')->required()->maxLength(255),
             Textarea::make('message')->required(),
+            Textarea::make('response')
+                ->label('Response')
+                ->columnSpanFull()
+                ->rows(5),
             Select::make('status')
                 ->options([
                     'open' => 'Open',
@@ -42,6 +46,7 @@ class TicketResource extends Resource
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('user_id')->sortable(),
                 TextColumn::make('title')->searchable(),
+                TextColumn::make('response')->limit(50)->label('Response'),
                 TextColumn::make('status')->badge(),
                 TextColumn::make('created_at')->dateTime()->sortable(),
             ])
