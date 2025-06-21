@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Account;
 use App\Mail\AccountActivationMail;
@@ -79,8 +78,8 @@ class RegisterController extends Controller
             // Setăm statusul contului
             $accountStatus = $requireEmailVerification ? 'PENDING' : 'OK';
 
-            // Inserare cont folosind hashing modern
-            $hashedPassword = Hash::make($request->password);
+            // Inserare cont folosind hashing compatibil Metin2
+            $hashedPassword = \App\Support\MySQLPassword::hash($request->password);
 
             $accountId = DB::connection('account')->table('account')->insertGetId([
                 'login' => $request->username,

@@ -3,7 +3,6 @@
 namespace App\Livewire\Auth;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Metin2User;
@@ -38,19 +37,10 @@ class Metin2Login extends Component
             return;
         }
 
-        $validPassword = Hash::check($this->password, $user->password);
-
-        if (!$validPassword) {
-            $passwordCheck = DB::connection('account')
-                ->selectOne("SELECT PASSWORD(?) as hashed", [$this->password]);
-
-            if ($passwordCheck && $passwordCheck->hashed === $user->password) {
-                $validPassword = true;
-                $newHash = Hash::make($this->password);
-                DB::connection('account')->table('account')->where('id', $user->id)
-                    ->update(['password' => $newHash]);
-                $user->password = $newHash;
-            }
+        if (str_starts_with($user->password, '*')) {
+            $validPassword = \App\Support\MySQLPassword::check($this->password, $user->password);
+        } else {
+            $validPassword = Hash::check($this->password, $user->password);
         }
 
         if (!$validPassword) {
