@@ -58,6 +58,34 @@ class GuildController extends Controller
         return view('top-guilds', [
             'guilds' => $guilds,
             'title' => 'Top Guilds'
-        ]);        
+        ]);
+    }
+
+    public function show($name)
+    {
+        $guild = DB::connection('player')
+            ->table('guild')
+            ->select('id', 'name', 'level', 'ladder_point', 'win', 'loss', 'gold')
+            ->where('name', $name)
+            ->first();
+
+        if (!$guild) {
+            abort(404);
+        }
+
+        $members = DB::connection('player')
+            ->table('guild_member as gm')
+            ->join('player as p', 'gm.pid', '=', 'p.id')
+            ->select('p.name', 'p.level')
+            ->where('gm.guild_id', $guild->id)
+            ->orderByDesc('p.level')
+            ->limit(20)
+            ->get();
+
+        return view('guild-profile', [
+            'guild' => $guild,
+            'members' => $members,
+            'title' => $guild->name,
+        ]);
     }
 }

@@ -48,7 +48,11 @@
                 @foreach($players as $player)
                     <tr class="border-b border-gray-600">
                         <td class="p-2">{{ $player->rank }}</td>
-                        <td class="p-2">{{ $player->player_name }}</td>
+                        <td class="p-2">
+                            <a href="{{ route('player.show', $player->player_name) }}" class="text-green-400 hover:underline">
+                                {{ $player->player_name }}
+                            </a>
+                        </td>
                         <td class="p-2">{{ $player->level }}</td>
 						<td class="p-2 text-center">
 							@if($player->empire == 3)
@@ -80,9 +84,15 @@
 								</div>
 							@endif
 						</td>
-						<td class="p-2">
-							{{ $player->guild_name }}
-						</td>
+                                                <td class="p-2">
+                                                    @if($player->guild_name !== 'N/A')
+                                                        <a href="{{ route('guild.show', $player->guild_name) }}" class="text-blue-400 hover:underline">
+                                                            {{ $player->guild_name }}
+                                                        </a>
+                                                    @else
+                                                        {{ $player->guild_name }}
+                                                    @endif
+                                                </td>
 
 						<td class="p-2">{{ $player->playtime }} {{ __('messages.page_top_players_table_play_time_minutes') }}</td>
 						<td class="p-2">{{ $player->killed_monster }}</td>

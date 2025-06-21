@@ -110,7 +110,11 @@
                             @foreach ($players as $player)
                                 <li class="flex justify-between py-2 px-2 hover:bg-gray-900 transition text-white rounded-md">
                                     <span class="w-1/6 text-center text-yellow-400 font-bold">#{{ $player->rank }}</span>
-                                    <span class="w-2/6 text-center text-gray-100">{{ e($player->player_name) }}</span>
+                                    <span class="w-2/6 text-center text-gray-100">
+                                        <a href="{{ route('player.show', $player->player_name) }}" class="hover:underline">
+                                            {{ e($player->player_name) }}
+                                        </a>
+                                    </span>
                                     <span class="w-1/6 text-center">{{ $player->level }}</span>
                                 </li>
                             @endforeach
@@ -138,7 +142,11 @@
                             @foreach ($guilds as $index => $guild)
                                 <li class="flex justify-between py-2 px-2 hover:bg-gray-900 transition text-white rounded-md">
                                     <span class="w-1/6 text-center font-bold text-blue-400">#{{ $index + 1 }}</span>
-                                    <span class="w-2/6 text-center text-yellow-400 font-bold truncate" title="{{ e($guild->name) }}">{{ e($guild->name) }}</span>
+                                    <span class="w-2/6 text-center text-yellow-400 font-bold truncate" title="{{ e($guild->name) }}">
+                                        <a href="{{ route('guild.show', $guild->name) }}" class="hover:underline">
+                                            {{ e($guild->name) }}
+                                        </a>
+                                    </span>
                                     <span class="w-1/6 text-center">{{ $guild->level }}</span>
                                 </li>
                             @endforeach
