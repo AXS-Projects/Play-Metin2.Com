@@ -28,7 +28,7 @@ class AccountObserver
             $agent = new Agent();
             $agent->setUserAgent($request->userAgent());
             $position = Location::get($request->ip());
-            $location = $position ? ($position->city . ', ' . $position->countryName) : null;
+            $location = $position ? ($position->cityName . ', ' . $position->countryName) : null;
             AuditLog::create([
                 'user_id' => Auth::id(),
                 'username' => Auth::user()?->login,
