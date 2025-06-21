@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use App\Models\Metin2User;
 use App\Models\AuditLog;
+use Jenssegers\Agent\Agent;
+use Stevebauman\Location\Facades\Location;
 
 class Metin2AuthController extends Controller
 {
@@ -53,11 +55,22 @@ class Metin2AuthController extends Controller
 
             Auth::guard('metin2')->login($user, $request->boolean('remember'));
 
+            $agent = new Agent();
+            $agent->setUserAgent($request->userAgent());
+
+            $position = Location::get($request->ip());
+            $location = $position ? ($position->city . ', ' . $position->countryName) : null;
+
             AuditLog::create([
                 'user_id' => $user->id,
+                'username' => $user->login,
                 'action' => 'login',
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
+                'session_id' => $request->session()->getId(),
+                'browser' => $agent->browser(),
+                'platform' => $agent->platform(),
+                'location' => $location,
             ]);
 
             return redirect()->back()->with('success', __('messages.auth_success'));
@@ -75,6 +88,14 @@ class Metin2AuthController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::guard('metin2')->user();
+        $sessionId = $request->session()->getId();
+
+        $agent = new Agent();
+        $agent->setUserAgent($request->userAgent());
+
+        $position = Location::get($request->ip());
+        $location = $position ? ($position->city . ', ' . $position->countryName) : null;
+
         Auth::guard('metin2')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -82,9 +103,14 @@ class Metin2AuthController extends Controller
         if ($user) {
             AuditLog::create([
                 'user_id' => $user->id,
+                'username' => $user->login,
                 'action' => 'logout',
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
+                'session_id' => $sessionId,
+                'browser' => $agent->browser(),
+                'platform' => $agent->platform(),
+                'location' => $location,
             ]);
         }
 
