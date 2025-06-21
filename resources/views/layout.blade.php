@@ -3,10 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Metin2 - Descoperă lumea jocului Metin2, participă la bătălii epice și devino un erou legendar.">
-    <meta name="keywords" content="metin2, mmorpg, joc online, pvp, guild">
-    
-    <title>{{ config('app.name') }} @yield('title')</title>
+    @php
+        use App\Models\SeoMeta;
+        use Illuminate\Support\Facades\Route;
+        $routeName = Route::currentRouteName();
+        $seoMeta = SeoMeta::where('page', $routeName)->first();
+        $defaultTitle = config('app.name') . ' ' . trim($__env->yieldContent('title'));
+    @endphp
+
+    <title>{{ $seoMeta->title ?? $defaultTitle }}</title>
+    <meta name="description" content="{{ $seoMeta->description ?? 'Metin2 - Descoperă lumea jocului Metin2, participă la bătălii epice și devino un erou legendar.' }}">
+    <meta name="keywords" content="{{ $seoMeta->keywords ?? 'metin2, mmorpg, joc online, pvp, guild' }}">
     
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
