@@ -18,6 +18,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\LanguageMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,12 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         // Item Shop
         Route::get('/itemshop', [ItemShopController::class, 'index'])->name('itemshop');
         Route::get('/itemshop/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+        // Add Coins
+        Route::get('/coins', [PaymentController::class, 'index'])->name('coins.index');
+        Route::post('/coins/checkout/{package}', [PaymentController::class, 'checkout'])->name('coins.checkout');
+        Route::get('/coins/success', [PaymentController::class, 'success'])->name('coins.success');
+        Route::get('/coins/cancel', [PaymentController::class, 'cancel'])->name('coins.cancel');
 
         // Character Management
         Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
