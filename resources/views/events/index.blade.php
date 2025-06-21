@@ -6,9 +6,26 @@
     <h2 class="text-xl font-semibold mb-4 text-green-400">Upcoming Events</h2>
     <ul class="space-y-4">
         @foreach($events as $event)
-            <li class="bg-black bg-opacity-50 rounded-lg p-4 border border-gray-700">
+            @php
+                $hoursUntilStart = now()->diffInHours($event->start_date, false);
+                if ($hoursUntilStart <= 0) {
+                    $alertClass = 'border-red-500';
+                    $textClass = 'text-red-400';
+                    $timeText = __('messages.event_started_ago', ['time' => $event->start_date->diffForHumans()]);
+                } elseif ($hoursUntilStart < 24) {
+                    $alertClass = 'border-yellow-500';
+                    $textClass = 'text-yellow-400';
+                    $timeText = __('messages.event_starts_in', ['time' => $event->start_date->diffForHumans()]);
+                } else {
+                    $alertClass = 'border-green-500';
+                    $textClass = 'text-green-400';
+                    $timeText = __('messages.event_starts_in', ['time' => $event->start_date->diffForHumans()]);
+                }
+            @endphp
+            <li class="bg-black bg-opacity-50 rounded-lg p-4 border border-gray-700 border-l-4 {{ $alertClass }}">
                 <h3 class="font-bold text-yellow-400 text-lg">{{ $event->title }}</h3>
                 <p class="text-gray-300 text-sm">{{ $event->start_date->format('Y-m-d H:i') }}</p>
+                <p class="{{ $textClass }} text-sm font-semibold">{{ $timeText }}</p>
                 @if($event->description)
                     <div class="mt-2 text-gray-300 prose prose-invert max-w-none">
                         {!! $event->description !!}
