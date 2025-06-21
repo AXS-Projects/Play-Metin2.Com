@@ -13,7 +13,7 @@ class CharacterController extends Controller
 
         $index = DB::connection('player')
             ->table('player_index')
-            ->where('account_id', $user->id)
+            ->where('id', $user->id)
             ->first();
 
         $ids = collect([$index->pid1 ?? null, $index->pid2 ?? null, $index->pid3 ?? null, $index->pid4 ?? null, $index->pid5 ?? null])
