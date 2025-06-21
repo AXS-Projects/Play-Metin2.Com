@@ -68,6 +68,7 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
     Route::post('/gallery/{item}/comment', [GalleryController::class, 'comment'])->name('gallery.comment');
     Route::post('/gallery/comments/{comment}/like', [GalleryController::class, 'like'])->name('gallery.comments.like');
     Route::post('/gallery/comments/{comment}/dislike', [GalleryController::class, 'dislike'])->name('gallery.comments.dislike');
+    Route::post('/gallery/comments/{comment}/reply', [GalleryController::class, 'reply'])->name('gallery.comments.reply');
     Route::post('/gallery/{item}/like', [GalleryController::class, 'likeItem'])->name('gallery.like');
     Route::post('/gallery/{item}/dislike', [GalleryController::class, 'dislikeItem'])->name('gallery.dislike');
 
