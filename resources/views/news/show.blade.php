@@ -7,7 +7,7 @@
     <h2 class="text-2xl font-bold mb-1 text-green-400">{{ $news->title }}</h2>
     <div class="text-xs text-gray-400 mb-4">
         @if($news->author)
-            {{ __('Posted by:') }} <a href="{{ route('news.author', ['author' => $news->author]) }}" class="hover:underline">{{ $news->author }}</a> ·
+            {{ __('messages.posted_by') }} <a href="{{ route('news.author', ['author' => $news->author]) }}" class="hover:underline">{{ $news->author }}</a> ·
         @endif
         @if($news->category)
             <a href="{{ route('news.category', $news->category->slug) }}" class="hover:underline">{{ $news->category->name }}</a> ·
@@ -20,20 +20,20 @@
 </div>
 
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">
-    <h3 class="text-lg font-semibold mb-4 text-green-400">Comments</h3>
+    <h3 class="text-lg font-semibold mb-4 text-green-400">{{ __('messages.comments') }}</h3>
 
     @if(Auth::guard('metin2')->check())
         <form action="{{ route('news.comment', $news->slug) }}" method="POST" class="mb-4">
             @csrf
             <textarea name="content" class="w-full p-2 bg-gray-800 text-white rounded" required></textarea>
-            <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Submit</button>
+            <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">{{ __('messages.submit') }}</button>
         </form>
     @else
         <p class="mb-2 text-red-500">{{ __('messages.news_comment_login_required') }}</p>
         <form class="mb-4">
             <input type="text" value="Unknown" class="w-full mb-2 p-2 bg-gray-800 text-white rounded" disabled />
             <textarea class="w-full p-2 bg-gray-800 text-white rounded" disabled></textarea>
-            <button class="mt-2 px-4 py-2 bg-gray-600 text-white rounded" disabled>Submit</button>
+            <button class="mt-2 px-4 py-2 bg-gray-600 text-white rounded" disabled>{{ __('messages.submit') }}</button>
         </form>
     @endif
 

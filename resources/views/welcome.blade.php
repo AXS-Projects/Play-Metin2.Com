@@ -11,17 +11,17 @@
     <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-2/3 z-10">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                {{ __('Welcome to') }} <span class="text-green-400">{{ config('app.name') }}</span>
+                {{ __('messages.welcome_to') }} <span class="text-green-400">{{ config('app.name') }}</span>
             </h1>
             <p class="text-xl text-gray-300 mb-6">
-                {{ __('Enter a world of epic battles, mythical creatures, and legendary adventures') }}
+                {{ __('messages.enter_world_epic') }}
             </p>
             <div class="flex flex-wrap gap-4">
                 <a href="/register" class="px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105">
-                    {{ __('Join the Battle') }}
+                    {{ __('messages.join_the_battle') }}
                 </a>
                 <a href="/download" class="px-8 py-3 bg-gray-700 text-white font-bold rounded-lg shadow-lg hover:bg-gray-600 transition-all duration-300 transform hover:scale-105">
-                    {{ __('Download Now') }}
+                    {{ __('messages.download_now') }}
                 </a>
             </div>
         </div>
@@ -33,23 +33,23 @@
 
 <!-- Server Stats -->
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700 mb-6">
-    <h2 class="text-xl font-semibold mb-4 text-green-400 text-center">{{ __('Server Statistics') }}</h2>
+    <h2 class="text-xl font-semibold mb-4 text-green-400 text-center">{{ __('messages.server_statistics') }}</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
         <div class="p-4 bg-black bg-opacity-50 rounded-lg border border-gray-700">
             <div class="text-3xl font-bold text-green-400 mb-1">3232</div>
-            <div class="text-sm text-gray-400">{{ __('Players Online') }}</div>
+            <div class="text-sm text-gray-400">{{ __('messages.players_online') }}</div>
         </div>
         <div class="p-4 bg-black bg-opacity-50 rounded-lg border border-gray-700">
             <div class="text-3xl font-bold text-blue-400 mb-1">124</div>
-            <div class="text-sm text-gray-400">{{ __('Active Guilds') }}</div>
+            <div class="text-sm text-gray-400">{{ __('messages.active_guilds') }}</div>
         </div>
         <div class="p-4 bg-black bg-opacity-50 rounded-lg border border-gray-700">
             <div class="text-3xl font-bold text-yellow-400 mb-1">232d</div>
-            <div class="text-sm text-gray-400">{{ __('Server Uptime') }}</div>
+            <div class="text-sm text-gray-400">{{ __('messages.server_uptime') }}</div>
         </div>
         <div class="p-4 bg-black bg-opacity-50 rounded-lg border border-gray-700">
             <div class="text-3xl font-bold text-purple-400 mb-1">42M</div>
-            <div class="text-sm text-gray-400">{{ __('Monsters Slain') }}</div>
+            <div class="text-sm text-gray-400">{{ __('messages.monsters_slain') }}</div>
         </div>
     </div>
 </div>
@@ -57,8 +57,8 @@
 <!-- Latest News Section -->
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700 mb-6">
     <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-semibold text-green-400">{{ __('Latest News & Events') }}</h2>
-        <a href="/news" class="text-sm text-green-400 hover:text-green-300 transition">{{ __('View All') }} →</a>
+        <h2 class="text-xl font-semibold text-green-400">{{ __('messages.latest_news_events') }}</h2>
+        <a href="/news" class="text-sm text-green-400 hover:text-green-300 transition">{{ __('messages.view_all') }} →</a>
     </div>
     
     <div class="space-y-4">
@@ -67,12 +67,12 @@
                 <h3 class="font-bold text-yellow-400">{{ $post->title }}</h3>
                 <div class="text-xs text-gray-400 mb-1">
                     @if($post->author)
-                        {{ __('By') }} {{ $post->author }} ·
+                        {{ __('messages.by') }} {{ $post->author }} ·
                     @endif
                     {{ $post->created_at->format('M d, Y') }} · {{ $post->views }} views · {{ $post->comments_count }} comments
                 </div>
                 <p class="text-gray-300 text-sm">{{ Str::limit(strip_tags($post->content), 150) }}</p>
-                <a href="{{ route('news.show', $post->slug) }}" class="inline-block mt-2 text-xs text-green-400 hover:text-green-300 transition">{{ __('Read More') }} →</a>
+                <a href="{{ route('news.show', $post->slug) }}" class="inline-block mt-2 text-xs text-green-400 hover:text-green-300 transition">{{ __('messages.read_more') }} →</a>
             </div>
         @endforeach
     </div>
@@ -80,7 +80,7 @@
 
 <!-- Features Section -->
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700 mb-6">
-    <h2 class="text-xl font-semibold mb-6 text-green-400 text-center">{{ __('Game Features') }}</h2>
+    <h2 class="text-xl font-semibold mb-6 text-green-400 text-center">{{ __('messages.game_features') }}</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Feature 1 -->
@@ -88,9 +88,9 @@
             <div class="w-16 h-16 bg-green-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">⚔️</span>
             </div>
-            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('PVP Combat') }}</h3>
+            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('messages.pvp_combat') }}</h3>
             <p class="text-sm text-gray-300">
-                {{ __('Challenge other players in epic battles and climb the PVP rankings to earn glory and rewards.') }}
+                {{ __('messages.challenge_other_players') }}
             </p>
         </div>
         
@@ -99,9 +99,9 @@
             <div class="w-16 h-16 bg-blue-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">🏰</span>
             </div>
-            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('Guild System') }}</h3>
+            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('messages.guild_system') }}</h3>
             <p class="text-sm text-gray-300">
-                {{ __('Form powerful alliances, conquer territories, and participate in massive guild wars.') }}
+                {{ __('messages.form_powerful_alliances') }}
             </p>
         </div>
         
@@ -110,9 +110,9 @@
             <div class="w-16 h-16 bg-purple-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">✨</span>
             </div>
-            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('Item Crafting') }}</h3>
+            <h3 class="text-lg font-bold text-green-400 mb-2">{{ __('messages.item_crafting') }}</h3>
             <p class="text-sm text-gray-300">
-                {{ __('Discover rare materials and craft legendary equipment to enhance your character\'s power.') }}
+                {{ __('messages.discover_rare_materials') }}
             </p>
         </div>
     </div>
@@ -120,7 +120,7 @@
 
 <!-- Screenshots Gallery -->
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">
-    <h2 class="text-xl font-semibold mb-4 text-green-400 text-center">{{ __('Game Screenshots') }}</h2>
+    <h2 class="text-xl font-semibold mb-4 text-green-400 text-center">{{ __('messages.game_screenshots') }}</h2>
     
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         @foreach ($latestMedia as $media)
@@ -139,7 +139,7 @@
     
     <div class="text-center mt-4">
         <a href="/screenshots" class="inline-block px-6 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">
-            {{ __('View Gallery') }}
+            {{ __('messages.view_gallery') }}
         </a>
     </div>
 </div>

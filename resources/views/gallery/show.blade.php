@@ -15,12 +15,12 @@
 </div>
 
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">
-    <h3 class="text-lg font-semibold mb-4 text-green-400">Comments</h3>
+    <h3 class="text-lg font-semibold mb-4 text-green-400">{{ __('messages.comments') }}</h3>
     <form action="{{ route('gallery.comment', $item) }}" method="POST" class="mb-4">
         @csrf
-        <input type="text" name="author" placeholder="Your name" class="w-full mb-2 p-2 bg-gray-800 text-white rounded" />
+        <input type="text" name="author" placeholder="{{ __('messages.your_name') }}" class="w-full mb-2 p-2 bg-gray-800 text-white rounded" />
         <textarea name="content" class="w-full p-2 bg-gray-800 text-white rounded" required></textarea>
-        <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Submit</button>
+        <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">{{ __('messages.submit') }}</button>
     </form>
 
     <div class="space-y-4">
