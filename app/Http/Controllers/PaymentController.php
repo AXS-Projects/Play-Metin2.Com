@@ -23,7 +23,7 @@ class PaymentController extends Controller
     {
         $user = Auth::guard('metin2')->user();
 
-        Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(\App\Models\Setting::getValue('stripe_secret_key', config('services.stripe.secret')));
 
         $session = Session::create([
             'mode' => 'payment',
@@ -64,7 +64,7 @@ class PaymentController extends Controller
             return redirect()->route('coins.index');
         }
 
-        Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(\App\Models\Setting::getValue('stripe_secret_key', config('services.stripe.secret')));
         $session = Session::retrieve($sessionId);
 
         if ($session->payment_status === 'paid') {
