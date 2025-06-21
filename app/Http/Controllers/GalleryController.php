@@ -21,7 +21,11 @@ class GalleryController extends Controller
     public function show(GalleryItem $item)
     {
         $item->increment('views');
-        $comments = $item->comments()->latest()->get();
+        $comments = $item->comments()
+            ->whereNull('parent_id')
+            ->with('replies')
+            ->latest()
+            ->get();
         return view('gallery.show', compact('item', 'comments'));
     }
 
@@ -36,6 +40,25 @@ class GalleryController extends Controller
         ]);
 
         $item->comments()->create([
+            'author' => Auth::guard('metin2')->user()->login,
+            'content' => $request->input('content'),
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function reply(Request $request, GalleryComment $comment)
+    {
+        if (!Auth::guard('metin2')->check()) {
+            return redirect()->back()->with('error', __('messages.error_not_authenticated'));
+        }
+
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $comment->replies()->create([
+            'gallery_item_id' => $comment->gallery_item_id,
             'author' => Auth::guard('metin2')->user()->login,
             'content' => $request->input('content'),
         ]);

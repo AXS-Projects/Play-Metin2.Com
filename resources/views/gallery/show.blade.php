@@ -52,6 +52,7 @@
         @foreach ($comments as $comment)
             <div class="bg-black bg-opacity-50 rounded-lg p-4 border border-gray-700">
                 <p class="text-sm text-gray-300">{{ $comment->content }}</p>
+                <div class="text-xs text-gray-400 mt-1">{{ $comment->author }} · {{ $comment->created_at->diffForHumans() }}</div>
                 <div class="text-xs text-gray-500 mt-2 flex items-center gap-2">
                     <form action="{{ route('gallery.comments.like', $comment) }}" method="POST" class="inline">
                         @csrf
@@ -61,6 +62,21 @@
                         @csrf
                         <button>👎 {{ $comment->dislikes }}</button>
                     </form>
+                </div>
+                <div class="ml-4 mt-3 space-y-3">
+                    @foreach($comment->replies as $reply)
+                        <div class="bg-gray-800 bg-opacity-40 rounded-lg p-3 border border-gray-700">
+                            <div class="text-sm text-gray-300">{{ $reply->content }}</div>
+                            <div class="text-xs text-gray-400 mt-1">{{ $reply->author }} · {{ $reply->created_at->diffForHumans() }}</div>
+                        </div>
+                    @endforeach
+                    @if(Auth::guard('metin2')->check())
+                        <form action="{{ route('gallery.comments.reply', $comment) }}" method="POST" class="space-y-2">
+                            @csrf
+                            <textarea name="content" class="w-full p-2 bg-gray-800 text-white rounded" required></textarea>
+                            <button class="px-4 py-2 bg-green-600 text-white rounded">Reply</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endforeach
