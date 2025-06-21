@@ -18,6 +18,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ServerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\LanguageMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -102,5 +103,8 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
     Route::get('/check-auth', function () {
         return response()->json(['authenticated' => session()->has('metin2_user')]);
     });
+
+    // Server status endpoint for AJAX polling
+    Route::get('/server-status', [ServerController::class, 'status'])->name('server.status');
 
 });
