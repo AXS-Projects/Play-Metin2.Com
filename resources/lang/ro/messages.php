@@ -180,4 +180,6 @@ return [
     'my_characters' => 'Personajele mele',
     'no_characters_found' => 'Nu s-au găsit personaje.',
     'play_time' => 'Timp jucat',
+    'unstuck_character' => 'Deblochează personajul',
+    'unstuck_success' => 'Personajul a fost mutat într-o locație sigură.',
 ];

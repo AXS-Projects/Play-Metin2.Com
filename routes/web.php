@@ -82,6 +82,7 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 
         // Character Management
         Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
+        Route::post('/characters/{character}/unstuck', [CharacterController::class, 'unstuck'])->name('characters.unstuck');
 
         // Tickets
         Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
