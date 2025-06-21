@@ -27,7 +27,7 @@ class DownloadController extends Controller
         return view('download', [
             'downloads' => $downloads,
             'description' => $finalDescription,
-            'title' => ' - Download',
+            'title' => 'Download',
         ]);
     }
 }
