@@ -172,5 +172,7 @@ return [
     'status' => 'Statut',
     'response' => 'Răspuns',
     'posted_by' => 'Postat de:',
+    'event_starts_in' => 'Începe în :time',
+    'event_started_ago' => 'A început acum :time',
     'news' => 'Ştiri',
 ];
