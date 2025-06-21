@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\NewsCategory;
 
 class News extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'content'];
+    protected $fillable = ['title', 'slug', 'content', 'news_category_id'];
 
     protected static function boot()
     {
@@ -23,5 +24,10 @@ class News extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(NewsCategory::class, 'news_category_id');
     }
 }
