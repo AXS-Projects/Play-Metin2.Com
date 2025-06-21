@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Comment;
 use App\Models\NewsCategory;
+use App\Models\Reaction;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,25 +52,25 @@ class NewsController extends Controller
 
     public function like(Comment $comment)
     {
-        $comment->increment('likes');
+        $this->react($comment, true);
         return redirect()->back();
     }
 
     public function dislike(Comment $comment)
     {
-        $comment->increment('dislikes');
+        $this->react($comment, false);
         return redirect()->back();
     }
 
     public function likeNews(News $news)
     {
-        $news->increment('likes');
+        $this->react($news, true);
         return redirect()->back();
     }
 
     public function dislikeNews(News $news)
     {
-        $news->increment('dislikes');
+        $this->react($news, false);
         return redirect()->back();
     }
 
@@ -114,5 +116,38 @@ class NewsController extends Controller
         $heading = 'News posted by ' . $author;
         $pageTitle = 'Posts by ' . $author;
         return view('news.index', compact('news', 'heading', 'pageTitle'));
+    }
+
+    private function react(Model $model, bool $like): void
+    {
+        if (!Auth::guard('metin2')->check()) {
+            return;
+        }
+
+        $userId = Auth::guard('metin2')->user()->id;
+
+        $reaction = $model->reactions()->where('user_id', $userId)->first();
+        $type = $like ? 'like' : 'dislike';
+
+        if (!$reaction) {
+            $model->reactions()->create(['user_id' => $userId, 'reaction' => $type]);
+            $model->increment($like ? 'likes' : 'dislikes');
+            return;
+        }
+
+        if ($reaction->reaction === $type) {
+            return;
+        }
+
+        $reaction->reaction = $type;
+        $reaction->save();
+
+        if ($like) {
+            $model->increment('likes');
+            $model->decrement('dislikes');
+        } else {
+            $model->increment('dislikes');
+            $model->decrement('likes');
+        }
     }
 }
