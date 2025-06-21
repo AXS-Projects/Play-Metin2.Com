@@ -10,7 +10,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $latestNews = News::latest()->take(3)->get();
+        $latestNews = News::withCount('comments')->latest()->take(3)->get();
         $latestMedia = GalleryItem::latest()->take(4)->get();
         return view('welcome', compact('latestNews', 'latestMedia'));
     }

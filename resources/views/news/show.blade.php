@@ -4,7 +4,13 @@
 
 @section('content')
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700 mb-6">
-    <h2 class="text-2xl font-bold mb-4 text-green-400">{{ $news->title }}</h2>
+    <h2 class="text-2xl font-bold mb-1 text-green-400">{{ $news->title }}</h2>
+    <div class="text-xs text-gray-400 mb-4">
+        @if($news->author)
+            {{ __('By') }} {{ $news->author }} ·
+        @endif
+        {{ $news->created_at->format('M d, Y') }} · {{ $news->views }} views · {{ $comments->count() }} comments
+    </div>
     <div class="prose prose-invert">
         {!! $news->content !!}
     </div>
