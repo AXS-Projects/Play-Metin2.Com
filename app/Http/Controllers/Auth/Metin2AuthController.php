@@ -59,7 +59,7 @@ class Metin2AuthController extends Controller
             $agent->setUserAgent($request->userAgent());
 
             $position = Location::get($request->ip());
-            $location = $position ? ($position->city . ', ' . $position->countryName) : null;
+            $location = $position ? ($position->cityName . ', ' . $position->countryName) : null;
 
             AuditLog::create([
                 'user_id' => $user->id,
@@ -94,7 +94,7 @@ class Metin2AuthController extends Controller
         $agent->setUserAgent($request->userAgent());
 
         $position = Location::get($request->ip());
-        $location = $position ? ($position->city . ', ' . $position->countryName) : null;
+        $location = $position ? ($position->cityName . ', ' . $position->countryName) : null;
 
         Auth::guard('metin2')->logout();
         $request->session()->invalidate();
