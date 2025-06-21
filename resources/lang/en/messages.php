@@ -170,6 +170,7 @@ return [
     'new_ticket' => 'New Ticket',
     'view_ticket' => 'View Ticket',
     'status' => 'Status',
+    'response' => 'Response',
     'posted_by' => 'Posted by:',
     'news' => 'News',
 ];

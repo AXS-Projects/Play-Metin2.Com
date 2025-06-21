@@ -170,6 +170,7 @@ return [
     'new_ticket' => 'Bilet nou',
     'view_ticket' => 'Vizualizați biletul',
     'status' => 'Statut',
+    'response' => 'Răspuns',
     'posted_by' => 'Postat de:',
     'news' => 'Ştiri',
 ];
