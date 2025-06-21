@@ -180,4 +180,6 @@ return [
     'my_characters' => 'My Characters',
     'no_characters_found' => 'No characters found.',
     'play_time' => 'Playtime',
+    'unstuck_character' => 'Unstuck Character',
+    'unstuck_success' => 'Your character has been moved to a safe location.',
 ];

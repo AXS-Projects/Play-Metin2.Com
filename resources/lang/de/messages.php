@@ -180,4 +180,6 @@ return [
     'my_characters' => 'Meine Charaktere',
     'no_characters_found' => 'Keine Charaktere gefunden.',
     'play_time' => 'Spielzeit',
+    'unstuck_character' => 'Charakter befreien',
+    'unstuck_success' => 'Dein Charakter wurde an einen sicheren Ort bewegt.',
 ];

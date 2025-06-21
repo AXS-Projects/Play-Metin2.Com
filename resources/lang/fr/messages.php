@@ -181,4 +181,6 @@ return [
     'my_characters' => 'Mes personnages',
     'no_characters_found' => 'Aucun personnage trouvé.',
     'play_time' => 'Temps de jeu',
+    'unstuck_character' => 'Débloquer le personnage',
+    'unstuck_success' => 'Votre personnage a été déplacé vers un endroit sûr.',
 ];

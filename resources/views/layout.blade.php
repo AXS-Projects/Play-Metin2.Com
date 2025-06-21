@@ -208,14 +208,6 @@
                                         🎮 {{ __('messages.character_management') }}
                                     </a>
                                     
-                                    <div class="relative group">
-                                        <a href="javascript:void(0)" class="block w-full px-4 py-3 text-center bg-gray-800 text-white rounded-lg shadow-lg opacity-60 cursor-not-allowed" aria-disabled="true">
-                                            🚀 Unstuck Character
-                                        </a>
-                                        <span class="absolute w-max left-1/2 -translate-x-1/2 -top-12 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none" role="tooltip">
-                                            🚧 Under Construction
-                                        </span>
-                                    </div>
                                     
                                     <div class="relative group">
                                         <a href="javascript:void(0)" class="block w-full px-4 py-3 text-center bg-green-600 text-white rounded-lg shadow-lg opacity-60 cursor-not-allowed" aria-disabled="true">

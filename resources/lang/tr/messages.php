@@ -180,4 +180,6 @@ return [
     'my_characters' => 'Karakterlerim',
     'no_characters_found' => 'Karakter bulunamadı.',
     'play_time' => 'Oynama süresi',
+    'unstuck_character' => 'Karakteri Kurtar',
+    'unstuck_success' => 'Karakteriniz güvenli bir konuma taşındı.',
 ];
