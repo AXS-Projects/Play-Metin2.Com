@@ -66,7 +66,8 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update.reset');
         Route::get('/cancel-reset/{token}', [ForgotPasswordController::class, 'cancel'])->name('password.reset.cancel');
 	
-	Route::post('/metin2/login', [Metin2AuthController::class, 'login'])->name('metin2.login');
+        Route::view('/metin2/login', 'auth.login')->name('metin2.login.form');
+        Route::post('/metin2/login', [Metin2AuthController::class, 'login'])->name('metin2.login');
 	Route::post('/metin2/logout', [Metin2AuthController::class, 'logout'])->name('metin2.logout');
 	Route::middleware(['metin2.auth'])->group(function () {
 		// Change Password
