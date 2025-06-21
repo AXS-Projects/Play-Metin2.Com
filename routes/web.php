@@ -19,6 +19,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ForgotPasswordController;
 
 // Aplica middleware-ul global pentru toate rutele
@@ -37,6 +38,10 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 	
         Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
+        // Contact
+        Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+        Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
         // News routes
         Route::get('/news', [NewsController::class, 'index'])->name('news.index');

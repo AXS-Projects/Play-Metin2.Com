@@ -168,5 +168,14 @@ return [
     // Comments
     'news_comment_login_required' => 'You must login to comment.',
 
+    // Contact
+    'menu_contact' => 'Contact',
+    'contact_title' => 'Contact Us',
+    'contact_name' => 'Name',
+    'contact_email' => 'Email',
+    'contact_message' => 'Message',
+    'contact_send' => 'Send',
+    'contact_success' => 'Thank you for reaching out! We\'ll get back to you soon.',
+
 ];
 

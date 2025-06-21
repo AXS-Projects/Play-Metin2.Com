@@ -168,4 +168,13 @@ return [
     // Comentarii
     'news_comment_login_required' => 'Trebuie să te autentifici pentru a comenta.',
 
+    // Contact
+    'menu_contact' => 'Contact',
+    'contact_title' => 'Contactează-ne',
+    'contact_name' => 'Nume',
+    'contact_email' => 'Email',
+    'contact_message' => 'Mesaj',
+    'contact_send' => 'Trimite',
+    'contact_success' => 'Mesajul tău a fost trimis! Îți vom răspunde în curând.',
+
 ];
