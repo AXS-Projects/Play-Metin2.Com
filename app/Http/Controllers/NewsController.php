@@ -11,13 +11,14 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::latest()->paginate(10);
+        $news = News::withCount('comments')->latest()->paginate(10);
         return view('news.index', compact('news'));
     }
 
     public function show($slug)
     {
         $news = News::where('slug', $slug)->firstOrFail();
+        $news->increment('views');
         $comments = $news->comments()->latest()->get();
         return view('news.show', compact('news', 'comments'));
     }
