@@ -1,7 +1,6 @@
 <?php
 
 return [
-    // MENIU
     'menu_home' => 'Acasă',
     'menu_login' => 'Autentificare',
     'menu_logout' => 'Deconectare',
@@ -9,22 +8,18 @@ return [
     'menu_download' => 'Descărcare',
     'menu_events' => 'Evenimente',
     'menu_tickets' => 'Tichete',
-
-    // BARA LATERALĂ STÂNGA
     'sidebar_left_top_players_title' => 'Top Jucători',
     'sidebar_left_top_players_rank' => 'Rang',
     'sidebar_left_top_players_name' => 'Nume',
     'sidebar_left_top_players_level' => 'Nivel',
     'sidebar_left_top_players_view_all' => 'Vezi toți',
     'sidebar_left_top_guilds_title' => 'Top Bresle',
-    'sidebar_left_top_guilds_name'  => 'Nume',
+    'sidebar_left_top_guilds_name' => 'Nume',
     'sidebar_left_top_guilds_level' => 'Nivel',
     'sidebar_left_top_guilds_points' => 'Puncte',
     'sidebar_left_top_guilds_view_all' => 'Vezi toate',
     'sidebar_left_latest_news_title' => 'Ultimele știri',
     'sidebar_left_latest_news_view_all' => 'Vezi toate',
-
-    // Sidebar Right - Login
     'sidebar_right_login_title' => 'Autentifică-te în contul tău',
     'sidebar_right_login_username' => 'Utilizator',
     'sidebar_right_login_password' => 'Parolă',
@@ -38,62 +33,49 @@ return [
     'auth_success' => 'Te-ai autentificat cu succes.',
     'auth_logout' => 'Te-ai deconectat cu succes.',
     'error_not_authenticated' => 'Trebuie să fii autentificat pentru a accesa această pagină.',
-
-    // Sidebar Right - Logged In
     'sidebar_right_welcome' => 'Bine ai venit,',
     'sidebar_right_logged_in' => 'Ești autentificat.',
     'sidebar_right_logout' => 'Deconectare',
-
-    // Sidebar Right - Server Status
     'sidebar_right_server_status' => 'Status Server',
     'sidebar_right_server_players_online' => 'Jucători Online',
     'sidebar_right_server_uptime' => 'Uptime Server',
     'sidebar_right_server_view_more' => 'Vezi mai multe',
-
-    // FOOTER
     'footer_all_rights' => 'Toate drepturile rezervate.',
-
-    // PAGINA TOP JUCĂTORI
-    'page_top_players_search_search_by_name'        => 'Caută după nume',
-    'page_top_players_search_search_min_level'      => 'Nivel minim',
-    'page_top_players_search_search_max_level'      => 'Nivel maxim',
-    'page_top_players_search_search_min_playtime'   => 'Timp de joc minim',
-    'page_top_players_search_search_max_playtime'   => 'Timp de joc maxim',
-    'page_top_players_search_search_search_button'  => 'Caută',
-    'page_top_players_title_page'                   => 'Top Jucători',
-    'page_top_players_table_title_rank'             => 'Rang',
-    'page_top_players_table_title_name'             => 'Nume',
-    'page_top_players_table_title_level'            => 'Nivel',
-    'page_top_players_table_title_kingdom'          => 'Împărăție',
-    'page_top_players_table_title_guild'            => 'Breaslă',
-    'page_top_players_table_title_playtime'         => 'Timp de joc',
-    'page_top_players_table_title_mob_killed'       => 'Monștri uciși',
-    'page_top_players_table_title_golden_bars'      => 'Bari de aur',
-    'page_top_players_table_empire_jinno'           => 'Jinno',
-    'page_top_players_table_empire_shinsoo'         => 'Shinsoo',
-    'page_top_players_table_empire_chunjo'          => 'Chunjo',
-    'page_top_players_table_play_time_minutes'      => 'minute',
-
-
-    // PAGINA TOP BRESLE
-    'page_top_guilds_search_by_name'      => 'Caută după nume',
-    'page_top_guilds_search_min_level'    => 'Nivel minim',
-    'page_top_guilds_search_max_level'    => 'Nivel maxim',
-    'page_top_guilds_search_min_points'   => 'Puncte minime',
-    'page_top_guilds_search_max_points'   => 'Puncte maxime',
-    'page_top_guilds_search_min_gold'     => 'Aur minim',
-    'page_top_guilds_search_max_gold'     => 'Aur maxim',
-    'page_top_guilds_search_search_button'=> 'Caută',
-    'page_top_guilds_title_page'           => 'Top Bresle',
-    'page_top_guilds_table_title_rank'     => 'Rang',
-    'page_top_guilds_table_title_name'     => 'Nume',
-    'page_top_guilds_table_title_level'    => 'Nivel',
-    'page_top_guilds_table_title_points'   => 'Puncte Clasament',
-    'page_top_guilds_table_title_wins'     => 'Victorii',
-    'page_top_guilds_table_title_losses'   => 'Înfrângeri',
-    'page_top_guilds_table_title_gold'     => 'Aur',
-
-	// PAGINA REGISTER
+    'page_top_players_search_search_by_name' => 'Caută după nume',
+    'page_top_players_search_search_min_level' => 'Nivel minim',
+    'page_top_players_search_search_max_level' => 'Nivel maxim',
+    'page_top_players_search_search_min_playtime' => 'Timp de joc minim',
+    'page_top_players_search_search_max_playtime' => 'Timp de joc maxim',
+    'page_top_players_search_search_search_button' => 'Caută',
+    'page_top_players_title_page' => 'Top Jucători',
+    'page_top_players_table_title_rank' => 'Rang',
+    'page_top_players_table_title_name' => 'Nume',
+    'page_top_players_table_title_level' => 'Nivel',
+    'page_top_players_table_title_kingdom' => 'Împărăție',
+    'page_top_players_table_title_guild' => 'Breaslă',
+    'page_top_players_table_title_playtime' => 'Timp de joc',
+    'page_top_players_table_title_mob_killed' => 'Monștri uciși',
+    'page_top_players_table_title_golden_bars' => 'Bari de aur',
+    'page_top_players_table_empire_jinno' => 'Jinno',
+    'page_top_players_table_empire_shinsoo' => 'Shinsoo',
+    'page_top_players_table_empire_chunjo' => 'Chunjo',
+    'page_top_players_table_play_time_minutes' => 'minute',
+    'page_top_guilds_search_by_name' => 'Caută după nume',
+    'page_top_guilds_search_min_level' => 'Nivel minim',
+    'page_top_guilds_search_max_level' => 'Nivel maxim',
+    'page_top_guilds_search_min_points' => 'Puncte minime',
+    'page_top_guilds_search_max_points' => 'Puncte maxime',
+    'page_top_guilds_search_min_gold' => 'Aur minim',
+    'page_top_guilds_search_max_gold' => 'Aur maxim',
+    'page_top_guilds_search_search_button' => 'Caută',
+    'page_top_guilds_title_page' => 'Top Bresle',
+    'page_top_guilds_table_title_rank' => 'Rang',
+    'page_top_guilds_table_title_name' => 'Nume',
+    'page_top_guilds_table_title_level' => 'Nivel',
+    'page_top_guilds_table_title_points' => 'Puncte Clasament',
+    'page_top_guilds_table_title_wins' => 'Victorii',
+    'page_top_guilds_table_title_losses' => 'Înfrângeri',
+    'page_top_guilds_table_title_gold' => 'Aur',
     'page_register_title' => 'Înregistrare cont',
     'page_register_username' => 'Nume utilizator',
     'page_register_real_name' => 'Numele real',
@@ -106,17 +88,6 @@ return [
     'page_register_terms' => 'Accept termenii și condițiile',
     'page_register_button' => 'Înregistrează-te',
     'page_register_terms_title' => 'Termeni și condiții',
-    'page_register_terms_content' => '
-        <p>Bun venit pe platforma noastră! Înainte de a continua, te rugăm să citești și să accepți termenii și condițiile noastre:</p>
-        <ul>
-            <li>Respectarea regulilor comunității este obligatorie.</li>
-            <li>Orice încercare de fraudă va duce la suspendarea contului.</li>
-            <li>Administratorii își rezervă dreptul de a modifica regulile în orice moment.</li>
-            <li>Datele tale vor fi protejate conform politicii de confidențialitate.</li>
-        </ul>
-        <p>Te rugăm să derulezi până jos pentru a putea accepta termenii și a finaliza înregistrarea.</p>',
-
-	// PAGINA REGISTRARE - EMAIL ACTIVATED.
     'register_success' => 'Contul tău a fost creat cu succes. Te rugăm să verifici emailul pentru a-l activa.',
     'register_success_email' => 'Contul a fost creat! Verifică emailul pentru link-ul de activare.',
     'register_success_no_email' => 'Contul tău a fost creat cu succes și este acum activ!',
@@ -124,18 +95,14 @@ return [
     'activation_success' => 'Contul tău a fost activat cu succes! Acum te poți autentifica.',
     'activation_failed' => 'Token-ul de activare este invalid sau contul este deja activat.',
     'email_not_allowed' => 'Sunt permise doar email-uri de la icloud.com, gmail.com și yahoo.*.',
-
-	// PAGINA - DESCARCARE
-	'page_download_title' => 'Descarcă jocul',
+    'page_download_title' => 'Descarcă jocul',
     'page_download_info' => 'Alege o sursă pentru a descărca jocul.',
     'page_download_links' => 'Link-uri disponibile',
     'page_download_button' => 'Descarcă',
     'page_download_no_links' => 'Momentan nu sunt disponibile link-uri de descărcare.',
     'page_download_requirements' => 'Cerințe de sistem',
-'page_download_unavailable' => 'Descărcarea este temporar indisponibilă.',
-'page_download_no_description' => 'Informațiile despre descărcare nu sunt disponibile momentan.',
-
-    // PAGE RESET PASSWORD
+    'page_download_unavailable' => 'Descărcarea este temporar indisponibilă.',
+    'page_download_no_description' => 'Informațiile despre descărcare nu sunt disponibile momentan.',
     'page_change_password_title' => 'Schimbă Parola',
     'page_change_password_info' => 'Actualizează parola contului în siguranță.',
     'page_change_password_form_title' => 'Introdu parola curentă și noua parolă',
@@ -146,8 +113,6 @@ return [
     'password_updated' => 'Parola ta a fost schimbată cu succes!',
     'error_current_password' => 'Parola curentă este incorectă.',
     'error_password_mismatch' => 'Parolele noi nu se potrivesc.',
-
-    // RESETARE PAROLA
     'forgot_password_title' => 'Recuperare Parolă',
     'reset_password_title' => 'Resetează Parola',
     'send_reset_link' => 'Trimite linkul de resetare',
@@ -164,11 +129,7 @@ return [
     'password_reset_email_button' => 'Resetează Parola',
     'password_reset_email_cancel_button' => 'Anulează cererea',
     'password_reset_email_disregard' => 'Dacă nu ai solicitat resetarea parolei, ignoră acest email.',
-
-    // Comentarii
     'news_comment_login_required' => 'Trebuie să te autentifici pentru a comenta.',
-
-    // Contact
     'menu_contact' => 'Contact',
     'contact_title' => 'Contactează-ne',
     'contact_name' => 'Nume',
@@ -176,5 +137,39 @@ return [
     'contact_message' => 'Mesaj',
     'contact_send' => 'Trimite',
     'contact_success' => 'Mesajul tău a fost trimis! Îți vom răspunde în curând.',
-
+    'welcome_to' => 'Bine ați venit la',
+    'enter_world_epic' => 'Intrați într -o lume a bătăliilor epice, a creaturilor mitice și a aventurilor legendare',
+    'join_the_battle' => 'Alătură -te bătăliei',
+    'download_now' => 'Descărcați acum',
+    'server_statistics' => 'Statistici de server',
+    'players_online' => 'Jucători online',
+    'active_guilds' => 'Bresle active',
+    'server_uptime' => 'Server -uptime',
+    'monsters_slain' => 'Monștrii uciși',
+    'latest_news_events' => 'Ultimele știri și evenimente',
+    'view_all' => 'Vizualizați toate',
+    'by' => 'De',
+    'read_more' => 'Citeşte mai mult',
+    'game_features' => 'Caracteristici de joc',
+    'pvp_combat' => 'Combat PVP',
+    'challenge_other_players' => 'Provocați ceilalți jucători în lupte epice și urcați clasamentul PVP pentru a câștiga glorie și recompense.',
+    'guild_system' => 'Sistem de breaslă',
+    'form_powerful_alliances' => 'Formați alianțe puternice, cuceriți teritoriile și participați la războaiele masive de breaslă.',
+    'item_crafting' => 'Meșteșugul articolului',
+    'discover_rare_materials' => 'Descoperiți materiale rare și echipamente legendare meșteșugărești pentru a îmbunătăți puterea personajului dvs.',
+    'game_screenshots' => 'Capturi de ecran de joc',
+    'view_gallery' => 'Galerie de vedere',
+    'comments' => 'Comentarii',
+    'submit' => 'Depune',
+    'your_name' => 'Numele dumneavoastră',
+    'title' => 'Titlu',
+    'message' => 'Mesaj',
+    'create_ticket' => 'Creați bilet',
+    'tickets' => 'Bilete',
+    'my_tickets' => 'Biletele mele',
+    'new_ticket' => 'Bilet nou',
+    'view_ticket' => 'Vizualizați biletul',
+    'status' => 'Statut',
+    'posted_by' => 'Postat de:',
+    'news' => 'Ştiri',
 ];
