@@ -83,8 +83,48 @@ return view('top-players', [
     'maxLevel' => $maxLevel,
     'minPlaytime' => $minPlaytime,
     'maxPlaytime' => $maxPlaytime,
-    'title' => 'Top Players',
+        'title' => 'Top Players',
 ]);
 
+    }
+
+    public function show($name)
+    {
+        $player = DB::connection('player')
+            ->table('player as p')
+            ->select(
+                'p.name as player_name',
+                'p.level',
+                'p.playtime',
+                DB::raw('COALESCE(p.killed_monster, 0) as killed_monster'),
+                DB::raw('COALESCE(SUM(i.count), 0) as golden_bars'),
+                DB::raw('COALESCE(pi.empire, 3) as empire'),
+                DB::raw('COALESCE(g.name, "N/A") as guild_name')
+            )
+            ->leftJoin('item as i', function ($join) {
+                $join->on('p.id', '=', 'i.owner_id')
+                    ->where('i.vnum', '=', 80005);
+            })
+            ->leftJoin('player_index as pi', function ($join) {
+                $join->on('p.id', '=', 'pi.pid1')
+                    ->orOn('p.id', '=', 'pi.pid2')
+                    ->orOn('p.id', '=', 'pi.pid3')
+                    ->orOn('p.id', '=', 'pi.pid4')
+                    ->orOn('p.id', '=', 'pi.pid5');
+            })
+            ->leftJoin('guild_member as gm', 'p.id', '=', 'gm.pid')
+            ->leftJoin('guild as g', 'gm.guild_id', '=', 'g.id')
+            ->where('p.name', $name)
+            ->groupBy('p.id', 'player_name', 'p.level', 'p.playtime', 'p.killed_monster', 'pi.empire', 'guild_name')
+            ->first();
+
+        if (!$player) {
+            abort(404);
+        }
+
+        return view('player-profile', [
+            'player' => $player,
+            'title' => $player->player_name,
+        ]);
     }
 }

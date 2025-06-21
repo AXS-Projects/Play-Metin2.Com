@@ -29,6 +29,8 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('index');
     Route::get('/top-players', [PlayerController::class, 'topPlayers'])->name('top.players');
     Route::get('/top-guilds', [GuildController::class, 'topGuilds'])->name('top.guilds');
+    Route::get('/player/{name}', [PlayerController::class, 'show'])->name('player.show');
+    Route::get('/guild/{name}', [GuildController::class, 'show'])->name('guild.show');
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register.form');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 

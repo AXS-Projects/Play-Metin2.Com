@@ -55,7 +55,11 @@
                 @foreach($guilds as $index => $guild)
                     <tr class="border-b border-gray-600">
                         <td class="p-2">{{ $index + 1 }}</td>
-                        <td class="p-2 text-yellow-400 font-bold">{{ e($guild->name) }}</td>
+                        <td class="p-2 text-yellow-400 font-bold">
+                            <a href="{{ route('guild.show', $guild->name) }}" class="hover:underline">
+                                {{ e($guild->name) }}
+                            </a>
+                        </td>
                         <td class="p-2">{{ $guild->level }}</td>
                         <td class="p-2">{{ $guild->ladder_point }}</td>
                         <td class="p-2">{{ $guild->win }}</td>
