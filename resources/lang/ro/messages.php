@@ -164,5 +164,8 @@ return [
     'password_reset_email_button' => 'Resetează Parola',
     'password_reset_email_cancel_button' => 'Anulează cererea',
     'password_reset_email_disregard' => 'Dacă nu ai solicitat resetarea parolei, ignoră acest email.',
-    
+
+    // Comentarii
+    'news_comment_login_required' => 'Trebuie să te autentifici pentru a comenta.',
+
 ];
