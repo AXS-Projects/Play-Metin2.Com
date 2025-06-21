@@ -1,12 +1,13 @@
 <?php
 
 return [
-    'menu_home' => 'Home',
-    'menu_login' => 'Login',
-    'menu_logout' => 'Logout',
-    'menu_register' => 'Register',
-    'menu_download' => 'Download',
-    'menu_events' => 'Events',
+    // Navigation
+    'menu_home' => 'Accueil',
+    'menu_login' => 'Connexion',
+    'menu_logout' => 'Déconnexion',
+    'menu_register' => 'Inscription',
+    'menu_download' => 'Télécharger',
+    'menu_events' => 'Événements',
     'menu_tickets' => 'Tickets',
     'sidebar_left_top_players_title' => 'Top Players',
     'sidebar_left_top_players_rank' => 'Rank',

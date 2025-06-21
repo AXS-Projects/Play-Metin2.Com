@@ -88,6 +88,9 @@
                     <a href="{{ route('switch.lang', ['lang' => 'ro']) }}" class="flex items-center px-4 py-2 hover:bg-gray-100 transition">
                         🇷🇴 <span class="ml-2 text-gray-900">Română</span>
                     </a>
+                    <a href="{{ route('switch.lang', ['lang' => 'fr']) }}" class="flex items-center px-4 py-2 hover:bg-gray-100 transition">
+                        🇫🇷 <span class="ml-2 text-gray-900">Français</span>
+                    </a>
                 </div>
             </div>
         </nav>
