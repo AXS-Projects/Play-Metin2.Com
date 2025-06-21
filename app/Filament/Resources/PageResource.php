@@ -30,7 +30,12 @@ class PageResource extends Resource
                     ->label('Page Title')
                     ->required()
                     ->maxLength(255),
-                    
+
+                TextInput::make('slug')
+                    ->label('Slug')
+                    ->disabled()
+                    ->helperText(fn (?Page $record) => $record ? url('/page/' . $record->slug) : null),
+
                 RichEditor::make('content')
                     ->label('Content')
                     ->required(),
@@ -42,6 +47,12 @@ class PageResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('slug')
+                    ->label('Link')
+                    ->formatStateUsing(fn (string $state) => url('/page/' . $state))
+                    ->url(fn (string $state) => url('/page/' . $state))
+                    ->openUrlInNewTab()
+                    ->copyable(),
                 TextColumn::make('updated_at')->dateTime()->sortable()->label('Last Updated'),
             ])
             ->filters([])
