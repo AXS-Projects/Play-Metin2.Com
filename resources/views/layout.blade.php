@@ -8,7 +8,8 @@
         use Illuminate\Support\Facades\Route;
         $routeName = Route::currentRouteName();
         $seoMeta = SeoMeta::where('page', $routeName)->first();
-        $defaultTitle = config('app.name') . ' ' . trim($__env->yieldContent('title'));
+        $pageTitle = trim($__env->yieldContent('title'));
+        $defaultTitle = trim(config('app.name') . ($pageTitle ? ' - ' . $pageTitle : ''));
     @endphp
 
     <title>{{ $seoMeta->title ?? $defaultTitle }}</title>
