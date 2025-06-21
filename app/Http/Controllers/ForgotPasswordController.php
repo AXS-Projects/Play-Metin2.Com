@@ -66,7 +66,7 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => __('messages.password_reset_link_invalid')]);
         }
 
-        $hashedPassword = '*' . strtoupper(sha1(sha1($request->password, true)));
+        $hashedPassword = \App\Support\MySQLPassword::hash($request->password);
         DB::connection('account')->table('account')->where('email', $request->email)->update(['password' => $hashedPassword]);
 
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();

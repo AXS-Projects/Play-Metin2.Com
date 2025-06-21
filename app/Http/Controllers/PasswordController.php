@@ -40,7 +40,7 @@ class PasswordController extends Controller
         }
     
         // 🔹 4. Verificăm parola actuală folosind SHA1(SHA1(password)) și adăugăm "*"
-        $hashedInputPassword = '*' . strtoupper(sha1(sha1($request->current_password, true)));
+        $hashedInputPassword = \App\Support\MySQLPassword::hash($request->current_password);
     
         if ($hashedInputPassword !== strtoupper($user->password)) {
             throw ValidationException::withMessages([
@@ -49,7 +49,7 @@ class PasswordController extends Controller
         }
     
         // 🔹 5. Aplicăm același hashing SHA1(SHA1(new_password)) și adăugăm "*"
-        $newHashedPassword = '*' . strtoupper(sha1(sha1($request->new_password, true)));
+        $newHashedPassword = \App\Support\MySQLPassword::hash($request->new_password);
     
         // 🔹 6. Schimbăm parola în baza de date
         \DB::connection('account')->table('account')
