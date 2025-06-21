@@ -173,4 +173,9 @@ return [
     'response' => 'Response',
     'posted_by' => 'Posted by:',
     'news' => 'News',
+    'character_management' => 'Karakter Yönetimi',
+    'characters' => 'Karakterler',
+    'my_characters' => 'Karakterlerim',
+    'no_characters_found' => 'Karakter bulunamadı.',
+    'play_time' => 'Oynama süresi',
 ];
