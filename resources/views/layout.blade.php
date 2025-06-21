@@ -64,8 +64,11 @@
                                     <a href="{{ route('switch.lang', ['lang' => 'en']) }}" class="flex items-center px-4 py-2 hover:bg-gray-700 transition rounded-t-lg" role="menuitem">
                                         🇬🇧 <span class="ml-2 text-white">English</span>
                                     </a>
-                                    <a href="{{ route('switch.lang', ['lang' => 'ro']) }}" class="flex items-center px-4 py-2 hover:bg-gray-700 transition rounded-b-lg" role="menuitem">
+                                    <a href="{{ route('switch.lang', ['lang' => 'ro']) }}" class="flex items-center px-4 py-2 hover:bg-gray-700 transition" role="menuitem">
                                         🇷🇴 <span class="ml-2 text-white">Română</span>
+                                    </a>
+                                    <a href="{{ route('switch.lang', ['lang' => 'fr']) }}" class="flex items-center px-4 py-2 hover:bg-gray-700 transition rounded-b-lg" role="menuitem">
+                                        🇫🇷 <span class="ml-2 text-white">Français</span>
                                     </a>
                                 </div>
                             </div>
