@@ -13,12 +13,15 @@
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">
     <h3 class="text-lg font-semibold mb-4 text-green-400">Comments</h3>
 
-    <form action="{{ route('news.comment', $news->slug) }}" method="POST" class="mb-4">
-        @csrf
-        <input type="text" name="author" placeholder="Your name" class="w-full mb-2 p-2 bg-gray-800 text-white rounded" />
-        <textarea name="content" class="w-full p-2 bg-gray-800 text-white rounded" required></textarea>
-        <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Submit</button>
-    </form>
+    @if(Auth::guard('metin2')->check())
+        <form action="{{ route('news.comment', $news->slug) }}" method="POST" class="mb-4">
+            @csrf
+            <textarea name="content" class="w-full p-2 bg-gray-800 text-white rounded" required></textarea>
+            <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Submit</button>
+        </form>
+    @else
+        <p class="mb-4 text-red-500">{{ __('messages.error_not_authenticated') }}</p>
+    @endif
 
     <div class="space-y-4">
         @foreach ($comments as $comment)
