@@ -303,18 +303,18 @@
                     </div>
                     <div class="p-4 text-center">
                         <div class="inline-block px-4 py-2 mb-4 bg-black bg-opacity-30 rounded-full">
-                            <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                            <span class="text-green-400 font-bold">Online</span>
+                            <span id="server-status-indicator" class="inline-block w-3 h-3 rounded-full mr-2 bg-gray-500"></span>
+                            <span id="server-status-text" class="text-gray-400 font-bold">...</span>
                         </div>
-                        
+
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div class="bg-black bg-opacity-30 rounded-lg p-3">
-                                <div class="text-xl font-bold text-green-400">3232</div>
+                                <div id="server-players-online" class="text-xl font-bold text-gray-400">-</div>
                                 <div class="text-xs text-gray-400">{{ __('messages.sidebar_right_server_players_online') }}</div>
                             </div>
-                            
+
                             <div class="bg-black bg-opacity-30 rounded-lg p-3">
-                                <div class="text-xl font-bold text-yellow-400">232h</div>
+                                <div id="server-uptime" class="text-xl font-bold text-gray-400">-</div>
                                 <div class="text-xs text-gray-400">{{ __('messages.sidebar_right_server_uptime') }}</div>
                             </div>
                         </div>
@@ -376,6 +376,46 @@
 <!-- JavaScript pentru funcționalitatea site-ului -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Fetch real server status and update sidebar
+        fetch('/server-status')
+            .then(response => response.json())
+            .then(data => {
+                const indicator = document.getElementById('server-status-indicator');
+                const statusText = document.getElementById('server-status-text');
+                const playersOnline = document.getElementById('server-players-online');
+                const uptime = document.getElementById('server-uptime');
+
+                if (data.online) {
+                    indicator?.classList.add('bg-green-500', 'animate-pulse');
+                    indicator?.classList.remove('bg-red-500');
+                    statusText.textContent = 'Online';
+                    statusText.classList.add('text-green-400');
+                    statusText.classList.remove('text-red-400');
+                } else {
+                    indicator?.classList.add('bg-red-500');
+                    indicator?.classList.remove('bg-green-500', 'animate-pulse');
+                    statusText.textContent = 'Offline';
+                    statusText.classList.add('text-red-400');
+                    statusText.classList.remove('text-green-400');
+                }
+
+                if (playersOnline && data.players_online !== null) {
+                    playersOnline.textContent = data.players_online;
+                    playersOnline.classList.add('text-green-400');
+                }
+
+                if (uptime && data.uptime) {
+                    uptime.textContent = data.uptime;
+                    uptime.classList.add('text-yellow-400');
+                }
+            })
+            .catch(() => {
+                const indicator = document.getElementById('server-status-indicator');
+                const statusText = document.getElementById('server-status-text');
+                indicator?.classList.add('bg-red-500');
+                statusText.textContent = 'Offline';
+                statusText.classList.add('text-red-400');
+            });
         // Language dropdown toggle
         const langButton = document.getElementById("lang-button");
         const langDropdown = document.getElementById("lang-dropdown");
