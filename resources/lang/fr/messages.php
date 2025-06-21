@@ -174,4 +174,9 @@ return [
     'response' => 'Response',
     'posted_by' => 'Posted by:',
     'news' => 'News',
+    'character_management' => 'Gestion des personnages',
+    'characters' => 'Personnages',
+    'my_characters' => 'Mes personnages',
+    'no_characters_found' => 'Aucun personnage trouvé.',
+    'play_time' => 'Temps de jeu',
 ];

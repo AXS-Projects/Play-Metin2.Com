@@ -173,4 +173,9 @@ return [
     'response' => 'Răspuns',
     'posted_by' => 'Postat de:',
     'news' => 'Ştiri',
+    'character_management' => 'Managementul personajelor',
+    'characters' => 'Personaje',
+    'my_characters' => 'Personajele mele',
+    'no_characters_found' => 'Nu s-au găsit personaje.',
+    'play_time' => 'Timp jucat',
 ];

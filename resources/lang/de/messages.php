@@ -173,4 +173,9 @@ return [
     'response' => 'Response',
     'posted_by' => 'Posted by:',
     'news' => 'News',
+    'character_management' => 'Charakterverwaltung',
+    'characters' => 'Charaktere',
+    'my_characters' => 'Meine Charaktere',
+    'no_characters_found' => 'Keine Charaktere gefunden.',
+    'play_time' => 'Spielzeit',
 ];
