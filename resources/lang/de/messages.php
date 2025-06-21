@@ -156,7 +156,7 @@ return [
     'guild_system' => 'Guild System',
     'form_powerful_alliances' => 'Form powerful alliances, conquer territories, and participate in massive guild wars.',
     'item_crafting' => 'Item Crafting',
-    'discover_rare_materials' => 'Discover rare materials and craft legendary equipment to enhance your character's power.',
+    'discover_rare_materials' => 'Discover rare materials and craft legendary equipment to enhance your character\'s power.',
     'game_screenshots' => 'Game Screenshots',
     'view_gallery' => 'View Gallery',
     'comments' => 'Comments',
