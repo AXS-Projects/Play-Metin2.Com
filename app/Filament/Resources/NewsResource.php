@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsResource\Pages;
 use App\Models\News;
+use App\Models\NewsCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -11,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 
 class NewsResource extends Resource
@@ -26,6 +28,10 @@ class NewsResource extends Resource
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('news_category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->required(),
                 RichEditor::make('content')
                     ->required(),
             ]);
@@ -36,6 +42,7 @@ class NewsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('category.name')->label('Category')->sortable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->label('Created'),
             ])
             ->actions([
