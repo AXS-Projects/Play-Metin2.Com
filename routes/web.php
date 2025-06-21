@@ -17,6 +17,8 @@ use App\Http\Controllers\ItemShopController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ForgotPasswordController;
 
 // Aplica middleware-ul global pentru toate rutele
@@ -34,6 +36,7 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 	Route::get('/download', [DownloadController::class, 'index'])->name('download');
 	
         Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
+        Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
         // News routes
         Route::get('/news', [NewsController::class, 'index'])->name('news.index');
@@ -63,9 +66,15 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         Route::get('/change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');
         Route::post('/change-password', [PasswordController::class, 'updatePassword'])->name('password.update');
 		
-		//Item Shop
-		Route::get('/itemshop', [ItemShopController::class, 'index'])->name('itemshop');
-		Route::get('/itemshop/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+                //Item Shop
+                Route::get('/itemshop', [ItemShopController::class, 'index'])->name('itemshop');
+                Route::get('/itemshop/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+                // Tickets
+                Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
+                Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
+                Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+                Route::get('/tickets/{ticket}', [TicketController::class, 'show'])->name('tickets.show');
     });
 	
 	Route::get('/check-auth', function () {
