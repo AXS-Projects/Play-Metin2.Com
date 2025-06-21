@@ -14,7 +14,7 @@ class MessagesRelationManager extends RelationManager
 {
     protected static string $relationship = 'messages';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form->schema([
             Textarea::make('content')
@@ -23,7 +23,7 @@ class MessagesRelationManager extends RelationManager
         ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
