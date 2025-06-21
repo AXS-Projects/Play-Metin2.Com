@@ -7,6 +7,8 @@ return [
     'menu_logout' => 'Deconectare',
     'menu_register' => 'Înregistrare',
     'menu_download' => 'Descărcare',
+    'menu_events' => 'Evenimente',
+    'menu_tickets' => 'Tichete',
 
     // BARA LATERALĂ STÂNGA
     'sidebar_left_top_players_title' => 'Top Jucători',

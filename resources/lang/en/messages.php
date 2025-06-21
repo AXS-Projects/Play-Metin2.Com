@@ -7,6 +7,8 @@ return [
     'menu_logout' => 'Logout',
     'menu_register' => 'Register',
     'menu_download' => 'Download',
+    'menu_events' => 'Events',
+    'menu_tickets' => 'Tickets',
 
     // SIDE BAR LEFT
     'sidebar_left_top_players_title' => 'Top Players',
