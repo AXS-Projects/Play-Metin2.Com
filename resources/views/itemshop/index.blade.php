@@ -1,5 +1,7 @@
 @extends('itemshop.layouts.app')
 
+@section('title', 'Item Shop')
+
 @section('content')
     <!-- Top 3 Most Purchased -->
     <h2 class="text-lg font-bold text-yellow-400 mb-3">🔥 Most Purchased</h2>

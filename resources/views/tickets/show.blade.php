@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', ' - View Ticket')
+@section('title', 'View Ticket')
 
 @section('content')
 <div class="glassmorphism p-6 rounded-lg shadow-lg border border-gray-700">

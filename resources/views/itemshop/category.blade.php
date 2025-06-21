@@ -1,5 +1,7 @@
 @extends('itemshop.layouts.app')
 
+@section('title', 'Item Shop - ' . $category->name)
+
 @section('content')
     <h2 class="text-lg font-bold text-yellow-400 mb-3">📦 {{ $category->name }}</h2>
 
