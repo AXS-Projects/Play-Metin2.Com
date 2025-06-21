@@ -23,13 +23,16 @@
                 }
             @endphp
             <li class="bg-black bg-opacity-50 rounded-lg p-4 border border-gray-700 border-l-4 {{ $alertClass }}">
-                <h3 class="font-bold text-yellow-400 text-lg">{{ $event->title }}</h3>
+                <h3 class="font-bold text-yellow-400 text-lg">
+                    <a href="{{ route('events.show', $event) }}" class="hover:underline">{{ $event->title }}</a>
+                </h3>
                 <p class="text-gray-300 text-sm">{{ $event->start_date->format('Y-m-d H:i') }}</p>
                 <p class="{{ $textClass }} text-sm font-semibold">{{ $timeText }}</p>
                 @if($event->description)
                     <div class="mt-2 text-gray-300 prose prose-invert max-w-none">
                         {!! $event->description !!}
                     </div>
+                    <a href="{{ route('events.show', $event) }}" class="text-green-400 text-sm hover:underline">{{ __('messages.read_more') }}</a>
                 @endif
             </li>
         @endforeach

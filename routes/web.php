@@ -38,6 +38,10 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 
     Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+    Route::post('/events/{event}/comment', [EventController::class, 'comment'])->name('events.comment');
+    Route::post('/events/comments/{comment}/like', [EventController::class, 'like'])->name('events.comments.like');
+    Route::post('/events/comments/{comment}/dislike', [EventController::class, 'dislike'])->name('events.comments.dislike');
 
     // Contact
     Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
